@@ -36,9 +36,9 @@ const legend: IUser[] = users.filter((user: IUser) => user.height === 179);
 function formatText(text: string, textFormat: string): string {
   if (textFormat === 'uppercase') {
     return text.toUpperCase();
-  } if (textFormat === 'lowercase') {
+  } else if (textFormat === 'lowercase') {
     return text.toLowerCase()
-  } if (textFormat === 'capitalize') {
+  } else if (textFormat === 'capitalize') {
      return text[0].toUpperCase() + text.slice(1).toLowerCase();
   }
   return text;
@@ -49,5 +49,5 @@ function sum(a: number, b: number): number {
 }
 
 function removeSymbol(text: string, symbol: string): string {
-  return text.replaceAll(symbol, "")
+  return text.replaceAll(symbol, "");
 }
