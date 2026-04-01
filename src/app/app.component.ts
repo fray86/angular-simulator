@@ -1,3 +1,4 @@
+import './training.ts';
 import { Component } from '@angular/core';
 
 @Component({
