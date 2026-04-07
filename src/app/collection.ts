@@ -45,9 +45,6 @@ const productList = [
 const usersCollection = new Collection(userList);
 const productsCollection = new Collection(productList);
 
-usersCollection.remove(0); 
-console.log(usersCollection.getAll());
-
 
 
 
