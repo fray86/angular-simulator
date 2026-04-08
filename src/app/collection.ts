@@ -6,7 +6,7 @@ export class Collection<T> {
     return this.items;
   }
   
-  get(index: number): T | undefined {
+  get(index: number): T {
     return this.items[index];
   }
 
@@ -22,28 +22,3 @@ export class Collection<T> {
     this.items[index] = item;
   }
 }
-
-interface IUser {
-  id: number;
-  name: string;
-}
-
-interface IProduct {
-  id: number;
-  title: string;
-}
-
-const userList: IUser[] = [
-  { id: 1, name: "Max" },
-  { id: 2, name: "Oleg" },
-  { id: 3, name: "Nikita" }
-];
-
-const productList: IProduct[] = [
-  { id: 101, title: "Iphone" },
-  { id: 102, title: "Sony Ericson" },
-  { id: 103, title: "Nokia" }
-]
-
-const usersCollection = new Collection(userList);
-const productsCollection = new Collection(productList);

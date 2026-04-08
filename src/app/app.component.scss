@@ -66,7 +66,7 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  padding-bottom: 90px;
+  padding-bottom: 88px;
 }
 
 .select-programm-container {
@@ -111,10 +111,6 @@
   margin-top: 8px;
 }
 
-.logo{
-  padding-top: 12px;
-}
-
 .logo-container{
   display: flex;
   flex-direction: column;
@@ -122,9 +118,9 @@
 }
 
 .logo-company-name{
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 0.4em;
   line-height: 1;
 }

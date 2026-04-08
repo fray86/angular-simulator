@@ -1,8 +1,18 @@
 import './training';
 import { Component } from '@angular/core';
 import { Color } from '../enums/color';
+import './collection';
 import { Collection } from './collection';
 
+interface IUser {
+  id: number;
+  name: string;
+}
+
+interface IProduct {
+  id: number;
+  title: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -35,4 +45,19 @@ export class AppComponent {
     visits = visits + 1;
     localStorage.setItem('visit-count', visits.toString());
   }
+  
+  public userList: IUser[] = [
+    { id: 1, name: "Max" },
+    { id: 2, name: "Oleg" },
+    { id: 3, name: "Nikita"},
+  ];
+
+  public productList: IProduct[] = [
+    { id: 101, title: "Iphone" },
+    { id: 102, title: "Sony Ericson" },
+    { id: 103, title: "Nokia" }
+  ];
 }
+
+
+
