@@ -1,19 +1,12 @@
-export interface StorageProvider<T> {
-  getAll(): T[];
-  get(index: number): T | undefined;
-  clear(): void;
-  remove(index: number): void;
-  replace(index:number, item:T): void;
-}
-
-export class Collection<T> implements StorageProvider<T> {
-  constructor(private items: T[]) {}  
+export class Collection<T> {
+  
+  constructor(private items: T[]) {}
   
   getAll(): T[] {
-    return this.items
+    return this.items;
   }
-
-  get(index:number): T | undefined {
+  
+  get(index: number): T | undefined {
     return this.items[index];
   }
 
@@ -30,21 +23,27 @@ export class Collection<T> implements StorageProvider<T> {
   }
 }
 
-const userList = [
+interface IUser {
+  id: number;
+  name: string;
+}
+
+interface IProduct {
+  id: number;
+  title: string;
+}
+
+const userList: IUser[] = [
   { id: 1, name: "Max" },
   { id: 2, name: "Oleg" },
-  { id: 3, name: "Nikita"}
+  { id: 3, name: "Nikita" }
 ];
 
-const productList = [
-  {id: 101, title: "Iphone"},
-  {id: 102, title: "Sony Ericson"},
-  {id: 103, title: "Nokia"}
+const productList: IProduct[] = [
+  { id: 101, title: "Iphone" },
+  { id: 102, title: "Sony Ericson" },
+  { id: 103, title: "Nokia" }
 ]
 
 const usersCollection = new Collection(userList);
 const productsCollection = new Collection(productList);
-
-
-
-

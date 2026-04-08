@@ -1,6 +1,6 @@
 import './training';
 import { Component } from '@angular/core';
-import { Colors } from '../enums/color';
+import { Color } from '../enums/color';
 import { Collection } from './collection';
 
 
@@ -12,24 +12,27 @@ import { Collection } from './collection';
 })
 
 export class AppComponent {
+  
+  public companyName: string = 'РУМТИБЕТ';
+
   constructor() {
     this.saveLoginData();
     this.updateLoginCount();
   }
   
-  isMainColor(color: Colors): boolean {
-    const rgb = [Colors.RED, Colors.GREEN, Colors.BLUE];
+  isMainColor(color: Color): boolean {
+    const rgb: string[] = [Color.RED, Color.GREEN, Color.BLUE];
     return rgb.includes(color);
   }
 
-  saveLoginData(): void {
-    const date = new Date().toISOString();
+  private saveLoginData(): void {
+    const date: string = new Date().toISOString();
     localStorage.setItem('last-visit', date);
   }
 
-  updateLoginCount(): void {
-    let visits = parseInt(localStorage.getItem('visitCount') || '0');
+  private updateLoginCount(): void {
+    let visits: number = parseInt(localStorage.getItem('visit-count') || '0');
     visits = visits + 1;
-    localStorage.setItem('visitCount', visits.toString());
+    localStorage.setItem('visit-count', visits.toString());
   }
 }
