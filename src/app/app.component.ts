@@ -1,5 +1,5 @@
 import './training';
-import { Component } from '@angular/core';
+import { Component, numberAttribute } from '@angular/core';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
 
@@ -57,7 +57,7 @@ export class AppComponent {
     { id: 103, title: "Nokia" }
   ];
 
-  userCollection = new Collection<IUser>(this.userList)
+  userCollection: Collection<IUser> = new Collection<IUser>(this.userList)
 
 }
 
