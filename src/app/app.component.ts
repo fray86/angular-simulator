@@ -1,7 +1,6 @@
 import './training';
 import { Component } from '@angular/core';
-import { Color } from '../enums/color';
-import './collection';
+import { Color } from '../enums/Color';
 import { Collection } from './collection';
 
 interface IUser {
@@ -26,7 +25,7 @@ export class AppComponent {
   public companyName: string = 'РУМТИБЕТ';
 
   constructor() {
-    this.saveLoginData();
+    this.saveVisitDate();
     this.updateLoginCount();
   }
   
@@ -35,7 +34,7 @@ export class AppComponent {
     return rgb.includes(color);
   }
 
-  private saveLoginData(): void {
+  private saveVisitDate(): void {
     const date: string = new Date().toISOString();
     localStorage.setItem('last-visit', date);
   }
@@ -46,17 +45,20 @@ export class AppComponent {
     localStorage.setItem('visit-count', visits.toString());
   }
   
-  public userList: IUser[] = [
+  userList: IUser[] = [
     { id: 1, name: "Max" },
     { id: 2, name: "Oleg" },
     { id: 3, name: "Nikita"},
   ];
 
-  public productList: IProduct[] = [
+  productList: IProduct[] = [
     { id: 101, title: "Iphone" },
     { id: 102, title: "Sony Ericson" },
     { id: 103, title: "Nokia" }
   ];
+
+  userCollection = new Collection<IUser>(this.userList)
+
 }
 
 

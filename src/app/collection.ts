@@ -15,10 +15,12 @@ export class Collection<T> {
   }
 
   remove(removeIndex: number): void {
-    this.items = this.items.filter((item, index) => index !== removeIndex);
+    this.items = this.items.filter((item: T, index: number) => index !== removeIndex);
   }
 
-  replace(index: number, item: T): void {
-    this.items[index] = item;
+  replace(indexReplace: number, item: T): void {
+    this.items = this.items.map((element: T, index: number) => index === indexReplace ? item : element)
   }
+
 }
+
