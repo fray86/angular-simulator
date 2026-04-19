@@ -1,1 +1,59 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<header class="header">
+  <div class="container super-header">
+    <div class="logo">
+      <a class="logo-container" href="/">
+        <img src="/images/logo.svg" alt="Румтибет логотип">
+        <span class="logo-company-name">{{ companyName }}</span>
+      </a>
+    </div>
+    <nav class="nav-list">
+      <a id="main-link" class="nav-item" href="#main">Главная</a>
+      <a id="guide-link" class="nav-item" href="#guide">Про гида</a>
+      <a id="program-link" class="nav-item" href="#program">Программа тура</a>
+      <a id="price-link" class="nav-item" href="#price">Стоимость</a>
+      <a id="blog-link" class="nav-item" href="#blog">Блог</a>
+      <a id="contacts-link" class="nav-item" href="#contacts">Контакты</a>
+    </nav>
+    <button id="consult-header-btn" type="button" class="consult-btn btn-general">
+      Консультация
+    </button>
+  </div>
+</header>
+<main class="main-section">
+  <section class="container main-container">
+    <h1 class="main-tittle fw-regular">
+      Насладись прогулкой в горах <br>
+       с командой единомышленников
+    </h1>
+    <div class="select-programm-container">
+      <div class="form-group">
+        <button id="select-location-btn" class="drop-btn">
+          <span>Локация для тура</span>
+          <img src="/images/arrow-icon.svg" alt="Стрелка вниз" class="field-icon">
+        </button>
+        <span class="field-hint fw-regular">
+          выберите из списка
+        </span>
+      </div>
+      <div class="form-group">
+        <button id="select-date-travel-date" class="drop-btn">
+          <span>Дата похода</span>
+          <img src="/images/date-icon.svg" alt="Иконка с датой" class="field-icon">
+        </button>
+        <span class="field-hint fw-regular">
+          укажите дату
+        </span>
+      </div>
+      <div class="form-group">
+        <button id="select-members-btn" class="drop-btn">
+        <span>Участники</span>
+        <img src="/images/arrow-icon.svg" alt="Стрелка вниз" class="field-icon">
+        </button>
+        <span class="field-hint fw-regular">
+          выберите из списка
+        </span>
+      </div>
+      <button id="search-programm-btn" class="btn-general btn-search-programm">Найти программу</button>
+    </div>
+  </section>
+</main>
