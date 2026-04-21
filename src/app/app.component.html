@@ -1,3 +1,5 @@
+<div [hidden]="!isLoading"><img class="loader-spinner" src="/images/loader-spinner.svg" alt="loader"></div>
+<main [hidden]="isLoading">
 <header class="header">
   <div class="container super-header">
     <div class="logo">
@@ -18,42 +20,117 @@
       Консультация
     </button>
   </div>
+  <div class="container widget-container">
+    <div id="date-header" [hidden]="currentMode !== ModeType.Date">
+      {{ currentTime }}
+    </div>
+    <div id="counter-header" [hidden]="currentMode !== ModeType.Counter">
+      <button class="change-value-count-btn" (click)="increase()">+</button>
+      {{ count }}
+      <button class="change-value-count-btn" (click)="decrease()" [disabled]="count === 0">-</button>
+    </div>
+    <button class="consult-btn toggle-header-btn" (click)="toggle()">{{ currentMode === ModeType.Date ? 'Показать кликер' : 'Показать дату'}}</button>
+  </div>
 </header>
-<main class="main-section">
+<div class="main-section">
   <section class="container main-container">
     <h1 class="main-tittle fw-regular">
       Насладись прогулкой в горах <br>
-       с командой единомышленников
+      с командой единомышленников
     </h1>
-    <div class="select-programm-container">
+    <form class="select-programm-container">
       <div class="form-group">
-        <button id="select-location-btn" class="drop-btn">
-          <span>Локация для тура</span>
-          <img src="/images/arrow-icon.svg" alt="Стрелка вниз" class="field-icon">
-        </button>
-        <span class="field-hint fw-regular">
+        <select name="location" [(ngModel)] ="selectedLocation" id="select-location-btn" class="field-base select-field">
+          <option class="option-value" value="" hidden >Локация для тура</option>
+          <option class="option-value" value="nefteugansk">Нефтеюганск</option>
+          <option class="option-value" value="moscow">Москва</option>
+          <option class="option-value" value="china">Китай</option>
+          <option class="option-value" value="mars">Марс</option>
+        </select>
+        <label class="field-hint fw-regular">
           выберите из списка
-        </span>
+        </label>
       </div>
       <div class="form-group">
-        <button id="select-date-travel-date" class="drop-btn">
-          <span>Дата похода</span>
-          <img src="/images/date-icon.svg" alt="Иконка с датой" class="field-icon">
-        </button>
-        <span class="field-hint fw-regular">
+        <input id="input-date" name="date" [(ngModel)]="selectedDate" placeholder="Дата похода" class="field-base" [type]="inputType" (focus)="onFocus()">
+        <label class="field-hint fw-regular">
           укажите дату
-        </span>
+        </label>
       </div>
       <div class="form-group">
-        <button id="select-members-btn" class="drop-btn">
-        <span>Участники</span>
-        <img src="/images/arrow-icon.svg" alt="Стрелка вниз" class="field-icon">
-        </button>
-        <span class="field-hint fw-regular">
+        <select name="members" [(ngModel)]="selectedMembers" id="select-members-btn" class="field-base select-field">
+        <option class="option-value" value="" hidden >Участники</option>
+        <option class="option-value" value="maxim">Максим</option>
+        <option class="option-value" value="batman">Бетмен</option>
+        <option class="option-value" value="pikachu">Пикачу</option>
+        <option class="option-value" value="boyarsky">Боярский</option>
+        </select>
+        <label class="field-hint fw-regular">
           выберите из списка
-        </span>
+        </label>
       </div>
-      <button id="search-programm-btn" class="btn-general btn-search-programm">Найти программу</button>
+      <button id="search-programm-btn" class="btn-general btn-search-programm" [disabled]="!selectedDate || !selectedLocation || !selectedMembers">Найти программу</button>
+    </form>
+    <div class="live-input-container">
+      <input class="live-input" type="text" [(ngModel)]="liveInput">
+      <p class="live-input-value">{{ liveInput }}</p>
     </div>
   </section>
-</main>
+</div>
+<section class="about-programm-container">
+  <div class="container">
+    <div class="play-images-container">
+      <img src="/images/about-mountain-top.png" alt="mountains" class="about-img img-top">
+      <img src="/images/about-house-bottom.png" alt="house" class="about-img img-bottom">
+      <button class="play-btn">
+        <img src="/images/play-btn.svg" alt="play">
+      </button>
+    </div>
+    <div class="about-programm">
+      <span class="about-travel-subtitle fw-regular">о нашем походе</span>
+      <h2 class="about-title fw-ExtraBold">Исследуйте все горные массивы мира вместе с нами</h2>
+      <p class="about-text fw-regular">
+        Его корни уходят в один фрагмент классической латыни 45 года
+        н.э., то есть более двух тысячелетий назад. Ричард МакКлинток,
+        профессор латыни из колледжа Hampden-Sydney, штат
+        Вирджиния, взял одно из самых странных слов в Lorem Ipsum,
+        "consectetur"и занялся его поисками в классической латинской
+        литературе.
+      </p>
+      <button class="about-programm-btn btn-general">Программа тура</button>
+    </div>
+  </div>
+</section>
+<section class="feature-container">
+  <div class="container programs-section">
+    <div class="programs-info">
+      <span class="about-travel-subtitle fw-regular">
+        наше предложение
+      </span>
+      <h2 class="about-title fw-ExtraBold">Лучшие программы для тебя</h2>
+      <p class="about-text fw-regular">
+        Его корни уходят в один фрагмент классической латыни 45
+        года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток,
+        профессор латыни из колледжа.
+      </p>
+      <div class="features-list">
+        @for (feature of features; track feature.id) {
+          <div class="features-item">
+            <img class="feature-icon" [src]="feature.img" [alt]="feature.title">
+            <div class="about-features">
+              <h4 class="feature-title fw-bold">{{feature.title}}</h4>
+              <p class="feature-description">{{feature.description}}</p>
+            </div>
+          </div>
+        }
+      </div>
+      <button class="btn-general about-programm-btn">Стоимость программ</button>
+    </div>
+    <div class="images-container">
+      <img class="gallery-img" src="/images/coffee.png" alt="coffee">
+      <img class="gallery-img" src="/images/man-in-mountain.png" alt="mountain man">
+      <img class="gallery-img" src="/images/man-in-scooter.png" alt="scooter man">
+      <img class="gallery-img" src="/images/mountains-with-river.png" alt="mountains with river">
+    </div>
+  </div>
+</section>
