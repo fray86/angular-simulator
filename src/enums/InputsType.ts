@@ -1,4 +1,4 @@
 export enum InputsType {
-  Text = 'text',
-  Date = 'date',
+  TEXT = 'text',
+  DATE = 'date'
 }

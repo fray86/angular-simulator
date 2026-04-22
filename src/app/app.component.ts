@@ -18,10 +18,10 @@ import { IFeature } from './interfaces/IFeature';
 export class AppComponent {
 
   count: number = 0;
-  readonly ModeType = Mode; 
-  readonly InputType = InputsType;
-  inputType: string = 'text';
-  currentMode: Mode = Mode.Date;
+  modeType: typeof Mode = Mode; 
+  inputType: typeof InputsType = InputsType;
+  inputTypes: string = 'text';
+  currentMode: Mode = Mode.DATE;
   companyName: string = 'РУМТИБЕТ';
   currentTime: string = "";
   liveInput: string = "";
@@ -64,25 +64,21 @@ export class AppComponent {
   }
 
   onFocus(): void {
-    this.inputType = 'date';
+    this.inputTypes = 'date';
   }
 
-  toggle(): void {
-    if (this.currentMode === Mode.Date) {
-      this.currentMode = Mode.Counter;
-    } else {
-      this.currentMode = Mode.Date;
-    }
+  toggleMode(mode: Mode): void {
+      this.currentMode = mode;
   }
 
   decrease(): void {
     if (this.count > 0) {
-      this.count = this.count - 1;
+      this.count--;
     }
   }
 
   increase(): void {
-    this.count = this.count + 1;
+    this.count++;
   }
 
   isMainColor(color: Color): boolean {

@@ -1,136 +1,143 @@
-<div [hidden]="!isLoading"><img class="loader-spinner" src="/images/loader-spinner.svg" alt="loader"></div>
-<main [hidden]="isLoading">
-<header class="header">
-  <div class="container super-header">
-    <div class="logo">
-      <a class="logo-container" href="/">
-        <img src="/images/logo.svg" alt="Румтибет логотип">
-        <span class="logo-company-name">{{ companyName }}</span>
-      </a>
-    </div>
-    <nav class="nav-list">
-      <a id="main-link" class="nav-item" href="#main">Главная</a>
-      <a id="guide-link" class="nav-item" href="#guide">Про гида</a>
-      <a id="program-link" class="nav-item" href="#program">Программа тура</a>
-      <a id="price-link" class="nav-item" href="#price">Стоимость</a>
-      <a id="blog-link" class="nav-item" href="#blog">Блог</a>
-      <a id="contacts-link" class="nav-item" href="#contacts">Контакты</a>
-    </nav>
-    <button id="consult-header-btn" type="button" class="consult-btn btn-general">
-      Консультация
-    </button>
-  </div>
-  <div class="container widget-container">
-    <div id="date-header" [hidden]="currentMode !== ModeType.Date">
-      {{ currentTime }}
-    </div>
-    <div id="counter-header" [hidden]="currentMode !== ModeType.Counter">
-      <button class="change-value-count-btn" (click)="increase()">+</button>
-      {{ count }}
-      <button class="change-value-count-btn" (click)="decrease()" [disabled]="count === 0">-</button>
-    </div>
-    <button class="consult-btn toggle-header-btn" (click)="toggle()">{{ currentMode === ModeType.Date ? 'Показать кликер' : 'Показать дату'}}</button>
-  </div>
-</header>
-<div class="main-section">
-  <section class="container main-container">
-    <h1 class="main-tittle fw-regular">
-      Насладись прогулкой в горах <br>
-      с командой единомышленников
-    </h1>
-    <form class="select-programm-container">
-      <div class="form-group">
-        <select name="location" [(ngModel)] ="selectedLocation" id="select-location-btn" class="field-base select-field">
-          <option class="option-value" value="" hidden >Локация для тура</option>
-          <option class="option-value" value="nefteugansk">Нефтеюганск</option>
-          <option class="option-value" value="moscow">Москва</option>
-          <option class="option-value" value="china">Китай</option>
-          <option class="option-value" value="mars">Марс</option>
-        </select>
-        <label class="field-hint fw-regular">
-          выберите из списка
-        </label>
-      </div>
-      <div class="form-group">
-        <input id="input-date" name="date" [(ngModel)]="selectedDate" placeholder="Дата похода" class="field-base" [type]="inputType" (focus)="onFocus()">
-        <label class="field-hint fw-regular">
-          укажите дату
-        </label>
-      </div>
-      <div class="form-group">
-        <select name="members" [(ngModel)]="selectedMembers" id="select-members-btn" class="field-base select-field">
-        <option class="option-value" value="" hidden >Участники</option>
-        <option class="option-value" value="maxim">Максим</option>
-        <option class="option-value" value="batman">Бетмен</option>
-        <option class="option-value" value="pikachu">Пикачу</option>
-        <option class="option-value" value="boyarsky">Боярский</option>
-        </select>
-        <label class="field-hint fw-regular">
-          выберите из списка
-        </label>
-      </div>
-      <button id="search-programm-btn" class="btn-general btn-search-programm" [disabled]="!selectedDate || !selectedLocation || !selectedMembers">Найти программу</button>
-    </form>
-    <div class="live-input-container">
-      <input class="live-input" type="text" [(ngModel)]="liveInput">
-      <p class="live-input-value">{{ liveInput }}</p>
-    </div>
-  </section>
+<div [hidden]="!isLoading">
+  <img class="loader-spinner" src="/images/loader-spinner.svg" alt="loader">
 </div>
-<section class="about-programm-container">
-  <div class="container">
-    <div class="play-images-container">
-      <img src="/images/about-mountain-top.png" alt="mountains" class="about-img img-top">
-      <img src="/images/about-house-bottom.png" alt="house" class="about-img img-bottom">
-      <button class="play-btn">
-        <img src="/images/play-btn.svg" alt="play">
+<main [hidden]="isLoading">
+  <header class="header">
+    <div class="container super-header">
+      <div class="logo">
+        <a class="logo-container" href="/">
+          <img src="/images/logo.svg" alt="Румтибет логотип">
+          <span class="logo-company-name">{{ companyName }}</span>
+        </a>
+      </div>
+      <nav class="nav-list">
+        <a id="main-link" class="nav-item" href="#main">Главная</a>
+        <a id="guide-link" class="nav-item" href="#guide">Про гида</a>
+        <a id="program-link" class="nav-item" href="#program">Программа тура</a>
+        <a id="price-link" class="nav-item" href="#price">Стоимость</a>
+        <a id="blog-link" class="nav-item" href="#blog">Блог</a>
+        <a id="contacts-link" class="nav-item" href="#contacts">Контакты</a>
+      </nav>
+      <button id="consult-header-btn" type="button" class="consult-btn btn-general">
+        Консультация
       </button>
     </div>
-    <div class="about-programm">
-      <span class="about-travel-subtitle fw-regular">о нашем походе</span>
-      <h2 class="about-title fw-ExtraBold">Исследуйте все горные массивы мира вместе с нами</h2>
-      <p class="about-text fw-regular">
+    <div class="widget-container">
+      @if (currentMode === modeType.DATE) {
+        <div id="date-header">
+          {{ currentTime }}
+          <button id="show-counter-btn" class="consult-btn toggle-header-btn" (click)="toggleMode(modeType.COUNTER)">Показать кликер</button>
+        </div>
+      } @else if ( currentMode === modeType.COUNTER) {
+        <div id="counter-header">
+          <button id="counter-plus-btn" class="change-value-count-btn" (click)="increase()">+</button>
+          {{ count }}
+          <button id="counter-minus-btn" class="change-value-count-btn" (click)="decrease()" [disabled]="count === 0">-</button>
+          <button id="show-date-btn" class="consult-btn toggle-header-btn" (click)="toggleMode(modeType.DATE)">Показать дату</button>
+        </div>
+      }
+    </div>
+  </header>
+  <div class="main-section">
+    <section class="container main-container">
+      <h1 class="main-tittle fw-regular">
+        Насладись прогулкой в горах <br>
+        с командой единомышленников
+      </h1>
+      <form class="select-programm-container">
+        <div class="form-group">
+          <select name="location" [(ngModel)] ="selectedLocation" id="select-location-btn" class="field-base select-field">
+            <option class="option-value" value="" hidden >Локация для тура</option>
+            <option class="option-value" value="nefteugansk">Нефтеюганск</option>
+            <option class="option-value" value="moscow">Москва</option>
+            <option class="option-value" value="china">Китай</option>
+            <option class="option-value" value="mars">Марс</option>
+          </select>
+          <label class="field-hint fw-regular">
+            выберите из списка
+          </label>
+        </div>
+        <div class="form-group">
+          <input id="input-date" name="date" [(ngModel)]="selectedDate" placeholder="Дата похода" class="field-base" [type]="inputType" (focus)="onFocus()">
+          <label class="field-hint fw-regular">
+            укажите дату
+          </label>
+        </div>
+        <div class="form-group">
+          <select name="members" [(ngModel)]="selectedMembers" id="select-members-btn" class="field-base select-field">
+          <option class="option-value" value="" hidden >Участники</option>
+          <option class="option-value" value="maxim">Максим</option>
+          <option class="option-value" value="batman">Бетмен</option>
+          <option class="option-value" value="pikachu">Пикачу</option>
+          <option class="option-value" value="boyarsky">Боярский</option>
+          </select>
+          <label class="field-hint fw-regular">
+            выберите из списка
+          </label>
+        </div>
+        <button id="search-programm-btn" class="btn-general btn-search-programm" [disabled]="!selectedDate || !selectedLocation || !selectedMembers">Найти программу</button>
+      </form>
+      <div class="live-input-container">
+        <input class="live-input" type="text" [(ngModel)]="liveInput">
+        <p class="live-input-value">{{ liveInput }}</p>
+      </div>
+    </section>
+  </div>
+  <section class="about-programm-container">
+    <div class="container">
+      <div class="play-images-container">
+        <img src="/images/about-mountain-top.png" alt="mountains" class="about-img img-top">
+        <img src="/images/about-house-bottom.png" alt="house" class="about-img img-bottom">
+        <button id="play-on-img-btn" class="play-btn">
+          <img src="/images/play-btn.svg" alt="play">
+        </button>
+      </div>
+      <div class="about-programm">
+        <span class="about-travel-subtitle fw-regular">о нашем походе</span>
+        <h2 class="about-title fw-ExtraBold">Исследуйте все горные массивы мира вместе с нами</h2>
+        <p class="about-text fw-regular">
         Его корни уходят в один фрагмент классической латыни 45 года
         н.э., то есть более двух тысячелетий назад. Ричард МакКлинток,
         профессор латыни из колледжа Hampden-Sydney, штат
         Вирджиния, взял одно из самых странных слов в Lorem Ipsum,
         "consectetur"и занялся его поисками в классической латинской
         литературе.
-      </p>
-      <button class="about-programm-btn btn-general">Программа тура</button>
-    </div>
-  </div>
-</section>
-<section class="feature-container">
-  <div class="container programs-section">
-    <div class="programs-info">
-      <span class="about-travel-subtitle fw-regular">
-        наше предложение
-      </span>
-      <h2 class="about-title fw-ExtraBold">Лучшие программы для тебя</h2>
-      <p class="about-text fw-regular">
-        Его корни уходят в один фрагмент классической латыни 45
-        года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток,
-        профессор латыни из колледжа.
-      </p>
-      <div class="features-list">
-        @for (feature of features; track feature.id) {
-          <div class="features-item">
-            <img class="feature-icon" [src]="feature.img" [alt]="feature.title">
-            <div class="about-features">
-              <h4 class="feature-title fw-bold">{{feature.title}}</h4>
-              <p class="feature-description">{{feature.description}}</p>
-            </div>
-          </div>
-        }
+        </p>
+        <button id="programms-btn" class="about-programm-btn btn-general">Программа тура</button>
       </div>
-      <button class="btn-general about-programm-btn">Стоимость программ</button>
     </div>
-    <div class="images-container">
-      <img class="gallery-img" src="/images/coffee.png" alt="coffee">
-      <img class="gallery-img" src="/images/man-in-mountain.png" alt="mountain man">
-      <img class="gallery-img" src="/images/man-in-scooter.png" alt="scooter man">
-      <img class="gallery-img" src="/images/mountains-with-river.png" alt="mountains with river">
+  </section>
+  <section class="feature-container">
+    <div class="container programs-section">
+      <div class="programs-info">
+        <span class="about-travel-subtitle fw-regular">
+          наше предложение
+        </span>
+        <h2 class="about-title fw-ExtraBold">Лучшие программы для тебя</h2>
+        <p class="about-text fw-regular">
+           корни уходят в один фрагмент классической латыни 45
+          года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток,
+          профессор латыни из колледжа.
+        </p>
+        <div class="features-list">
+          @for (feature of features; track feature.id) {
+            <div class="features-item">
+              <img class="feature-icon" [src]="feature.img" [alt]="feature.title">
+              <div class="about-features">
+                <h4 class="feature-title fw-bold">{{feature.title}}</h4>
+                <p class="feature-description">{{feature.description}}</p>
+              </div>
+            </div>
+          }
+        </div>
+        <button id="price-programm-btn" class="btn-general about-programm-btn">Стоимость программ</button>
+      </div>
+      <div class="images-container">
+        <img class="gallery-img" src="/images/coffee.png" alt="coffee">
+        <img class="gallery-img" src="/images/man-in-mountain.png" alt="mountain man">
+        <img class="gallery-img" src="/images/man-in-scooter.png" alt="scooter man">
+        <img class="gallery-img" src="/images/mountains-with-river.png" alt="mountains with river">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
