@@ -2,12 +2,13 @@
   width: 100%;
   background-color: rgba(24, 18, 30, 0.5);
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  color: var(--white-color);
 }
 
 .super-header {
   display: flex;
   justify-content: space-between;
-  height: 120px;
+  height: 95px;
   align-items: center;
 }
 
@@ -30,23 +31,24 @@
   line-height: 20px;
   letter-spacing: 1.2%;
   font-family: 'Nunito Sans', sans-serif;
+  min-width: 157px;
 }
 
 .nav-item {
   font-size: 18px;
 }
 
-.main-section{
+.main-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 985px;
   display: flex;
-  align-items: center;
-  .main-tittle{
-    font-size: 50px;
-    color: var(--white-color);
-    text-transform: uppercase;
-    letter-spacing: 2%;
-    line-height: 150%;
+  align-items: self-end;
+  .main-tittle {
+  font-size: 50px;
+  color: var(--white-color);
+  text-transform: uppercase;
+  letter-spacing: 2%;
+  line-height: 150%;
   }
 }
 
@@ -55,18 +57,21 @@
   background-image: url('/images/bg-main.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
+  background-position: center top;
   position: absolute;
-  height: 985px;
-  top: -120px;
+  top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   z-index: -2;
+  margin-top: -157px;
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
   padding-bottom: 88px;
+  padding-top: 160px;
 }
 
 .select-programm-container {
@@ -81,7 +86,7 @@
   }
 }
 
-.drop-btn {
+.field-base {
   padding: 16px;
   width: 270px;
   background:none;
@@ -93,9 +98,25 @@
   outline: none;
   border: 2px solid rgba(255, 255, 255, 0.5);
   cursor: pointer;
+  height: 56px;
+  appearance: none;
+  box-sizing: border-box;
 }
 
-.btn-search-programm{
+.select-field {
+  background-image: url('/images/arrow-icon.svg');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 18px;
+}
+
+#input-date::placeholder {
+  background-image: url('/images/date-icon.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.btn-search-programm {
   background-color: rgba(26, 62, 62, 1);
   color: var(--white-color);
   margin-bottom: 26px;
@@ -103,7 +124,7 @@
   padding-right: 36px;
 }
 
-.field-hint{
+.field-hint {
   display: block;
   color: var(--white-color);
   font-size: 14px;
@@ -111,16 +132,233 @@
   margin-top: 8px;
 }
 
-.logo-container{
+.logo-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.logo-company-name{
+.logo-company-name {
   font-size: 16px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.4em;
   line-height: 1;
 }
+
+.widget-container {
+  display: flex;
+  margin: 0 auto;
+  width: 1180px;
+  justify-content: end;
+  align-items: center;
+  padding-bottom: 18px;
+  gap: 50px;
+}
+
+.loader-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.live-input-container {
+  display: flex;
+  padding-top: 15px;
+}
+
+.live-input {
+  padding: 16px;
+  width: 270px;
+  background:none;
+  color: var(--white-color);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  background-image: url('/images/arrow-right-icon.svg');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 8px;
+}
+
+.live-input-value {
+  padding-left: 50px ;
+  color: var(--white-color);
+}
+
+.change-value-count-btn {
+  background: none;
+  border: none;
+  color: var(--white-color);
+}
+
+.toggle-header-btn {
+  padding: 12px 11px;
+}
+
+.option-value {
+  color: var(--main-color);
+}
+
+.field-base::placeholder {
+  color: white;
+}
+
+.about-programm-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.about-programm-container .container {
+  display: flex;
+  gap: 120px;
+}
+
+.play-images-container {
+  width: 480px;
+  min-width: 480px;
+  height: 526px;
+  position: relative;
+}
+
+.about-img {
+  width: 350px;
+  height: 400px;
+  border-radius: 20px;
+  position: absolute; /* Все картинки вырываем из потока для наложения */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.img-top {
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.img-bottom {
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.play-btn {
+  position: absolute;
+  top: 58%;
+  right: 30%;
+  z-index: 3;
+  background: none;
+  border: none;
+}
+
+.about-travel-subtitle {
+  font-size: 24px;
+  line-height: 20px;
+  color: var(--secondery-color);
+  display: block;
+  padding-bottom: 10px;
+}
+
+.about-programm {
+  padding-top: 65px;
+}
+
+.about-title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 120%;
+  padding-bottom: 40px;
+}
+
+.about-text {
+  margin: 0;
+  font-size: 18px;
+  line-height: 150%;
+  padding-bottom: 40px;
+}
+
+.about-programm-btn {
+  color: var(--white-color);
+  background-color: rgb(26, 62, 62);
+  font-size: 16px;
+  padding: 16px 36px;
+}
+
+.programs-section {
+  gap: 100px;
+}
+
+.programs-section:hover {
+  color: rgb(76, 185, 249);
+}
+
+.features-section {
+  background-color: rgba(243, 245, 244, 1);
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.features-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.feature-container {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(243, 245, 244, 1);
+}
+
+.feature-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: 1.2%;
+  padding-bottom: 5px;
+}
+
+.feature-description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.images-container {
+  height: 510px;
+  min-width: 510px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  padding-top: 40px;
+}
+
+.gallery-img {
+  min-width: 250px;
+  min-height: 250px;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
