@@ -31,15 +31,15 @@ export class AppComponent {
   count: number = 0;
   modeType: typeof Mode = Mode; 
   currentMode: Mode = Mode.DATE;
-  inputType: typeof Widget = Widget;
-  inputTypes: string = 'text';
+  widgetType: typeof Widget = Widget;
+  currentWidgetType: Widget = Widget.TEXT;
   companyName: string = 'РУМТИБЕТ';
   currentTime!: string;
   liveInput!: string;
   isLoading: boolean = true;
-  selectedLocation!: string;
-  selectedDate!: string;
-  selectedMembers!: string;
+  selectedLocation: string = "";
+  selectedDate: string = "";
+  selectedMembers: string = "";
 
   features: IFeature[] = [
     {
@@ -138,7 +138,7 @@ export class AppComponent {
   }
 
   onFocus(): void {
-    this.inputTypes = 'date';
+    this.currentWidgetType = Widget.DATE;
   }
 
   toggleMode(mode: Mode): void {
