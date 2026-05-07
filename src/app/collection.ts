@@ -21,6 +21,4 @@ export class Collection<T> {
   replace(indexReplace: number, item: T): void {
     this.items = this.items.map((element: T, index: number) => index === indexReplace ? item : element)
   }
-
 }
-

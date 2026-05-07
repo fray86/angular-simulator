@@ -58,7 +58,7 @@
           </label>
         </div>
         <div class="form-group">
-          <input id="input-date" name="date" [(ngModel)]="selectedDate" placeholder="Дата похода" class="field-base" [type]="inputType" (focus)="onFocus()">
+          <input id="input-date" name="date" [(ngModel)]="selectedDate" placeholder="Дата похода" class="field-base" [type]="inputTypes" (focus)="onFocus()">
           <label class="field-hint fw-regular">
             укажите дату
           </label>
@@ -103,7 +103,7 @@
         "consectetur"и занялся его поисками в классической латинской
         литературе.
         </p>
-        <button id="programms-btn" class="about-programm-btn btn-general">Программа тура</button>
+        <button id="programms-btn" class="about-programm-btn btn-general" (click)="messegeServies.addMessege('Программа недоступна', MessageTypes.WARN)">Программа тура</button>
       </div>
     </div>
   </section>
@@ -124,13 +124,13 @@
             <div class="features-item">
               <img class="feature-icon" [src]="feature.img" [alt]="feature.title">
               <div class="about-features">
-                <h4 class="feature-title fw-bold">{{feature.title}}</h4>
+                <h2 class="feature-title fw-bold">{{feature.title}}</h2>
                 <p class="feature-description">{{feature.description}}</p>
               </div>
             </div>
           }
         </div>
-        <button id="price-programm-btn" class="btn-general about-programm-btn">Стоимость программ</button>
+        <button id="price-programm-btn" class="btn-general about-programm-btn" (click)="messegeServies.addMessege('Стоимость отправлена на почту', MessageTypes.INFO)">Стоимость программ</button>
       </div>
       <div class="images-container">
         <img class="gallery-img" src="/images/coffee.png" alt="coffee">
@@ -140,4 +140,79 @@
       </div>
     </div>
   </section>
+  <section>
+    <div class="direction-section container">
+        <span class="section-subtitle">
+          по версии отдыхающих
+        </span>
+        <h2 class="section-header">
+          Популярные направления
+        </h2>
+        <div class="direction-list">
+          @for (direction of directions; track direction.id) {
+            <div class="direction-item">
+              <img class="direction-img" [src]="direction.img" [alt]="direction.title">
+              <span class="direction-rating fw-SemiBold">
+                <img src="/images/rating-star.svg" alt="rating-star" class="star-icon">
+                {{direction.rating}}
+              </span>
+              <div class="about-direction">
+                <div class="direction-text-content">
+                <h2 class="direction-title fw-bold">{{direction.title}}</h2>
+                <p class="direction-subtitle">{{direction.subtitle}}</p>
+                </div>
+                <span class="direction-price">{{direction.price}}</span>
+              </div>
+            </div>
+          }
+        </div>
+      <button id="direction-button" class="btn-general mid-section-btn" (click)="messegeServies.addMessege('Направления получены', MessageTypes.SUCCESS)">
+        Рейтинг направлений
+      </button>
+    </div>
+  </section>
+  <section class="travel-blog-section">
+    <div class="container travel-blog-container">
+      <span class="section-subtitle">
+          делимся впечатлениями
+        </span>
+        <h2 class="section-header">
+          Блог о путешествиях
+        </h2>
+    <div class="materials-list">
+    @for (material of materials; track material.id) {
+      <div class="materials-item">
+        <img class="materials-img" [src]="material.img" [alt]="material.title">
+        <div class="material-text-content">
+        <h3 class="material-title fw-bold">{{material.title}}</h3>
+        <p class="material-description fw-regular material-bottom-text">{{material.description}}</p>
+        <div class="materials-blog-bottom">
+          <span class="material-date fw-bold material-bottom-text">{{material.date}}</span>
+          <button id="material-link-button" class="fw-bold material-bottom-text material-button">{{material.button}}</button>
+        </div>
+        </div>
+      </div>
+    }
+    </div>
+    <button id="materials-btn" class="btn-general mid-section-btn" (click)="messegeServies.addMessege('Материалы недоступны', MessageTypes.ERROR)">Другие материалы</button>
+    </div>
+  </section>
+  <div class="messeges-container">
+    @for ( item of messegeServies.messeges; track item) {
+      <ng-container [ngTemplateOutlet]="msgTemplate" [ngTemplateOutletContext]="{ item: item}">
+      </ng-container>
+    }
+  </div>
+  <ng-template #msgTemplate let-msg="item">
+    <div class="messege-item">
+      <img src="/images/messege-icon.svg" alt="messege icon" width="40px" height="40px">
+      <div class="text-content-messege">
+        <h5 class="messege-text fw-bold">{{msg.type}}</h5>
+        <span class="messege-text fw-regular">{{msg.messege}}</span>
+      </div>
+      <button class="messege-close-btn" id="messege-close-btn" (click)="messegeServies.delete(msg)">
+        <img src="/images/close-msg-btn.svg" alt="close messege">
+      </button>
+    </div>
+  </ng-template>
 </main>

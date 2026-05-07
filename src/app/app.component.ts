@@ -1,34 +1,45 @@
 import './training';
-import { Component, numberAttribute } from '@angular/core';
+import { Component, inject, numberAttribute } from '@angular/core';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
 import { Mode } from '../enums/Mode';
 import { FormsModule } from '@angular/forms';
-import { InputsType } from '../enums/InputsType'
+import { Widget } from '../enums/Widget'
 import { IProduct } from './interfaces/IProduct';
 import { IUser } from './interfaces/IUser';
 import { IFeature } from './interfaces/IFeature';
+import { IDirection } from './interfaces/IDirection';
+import { IMaterial } from './interfaces/IMaterial';
+import { ControlMessegeService } from '../control-messege.service';
+import { ControlLocalStorageService} from '../control-local-storage.service'
+import { Messege } from '../enums/Messege';
+import { NgTemplateOutlet } from "@angular/common";
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule],
+  imports: [FormsModule, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
 
+  public messegeServies: ControlMessegeService = inject(ControlMessegeService);
+
+  private localStorageControl: ControlLocalStorageService = inject(ControlLocalStorageService);
+
+  MessageTypes: typeof Messege = Messege; 
   count: number = 0;
   modeType: typeof Mode = Mode; 
-  inputType: typeof InputsType = InputsType;
-  inputTypes: string = 'text';
   currentMode: Mode = Mode.DATE;
+  inputType: typeof Widget = Widget;
+  inputTypes: string = 'text';
   companyName: string = 'РУМТИБЕТ';
-  currentTime: string = "";
-  liveInput: string = "";
+  currentTime!: string;
+  liveInput!: string;
   isLoading: boolean = true;
-  selectedLocation: string = "";
-  selectedDate: string = "";
-  selectedMembers: string = "";
+  selectedLocation!: string;
+  selectedDate!: string;
+  selectedMembers!: string;
 
   features: IFeature[] = [
     {
@@ -49,6 +60,69 @@ export class AppComponent {
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
     }
+  ];
+
+  directions: IDirection[] = [
+    {
+      id: 1,
+      img: '/images/river-with-mountains.png',
+      rating: "4.9",
+      title: 'Озеро возле гор',
+      subtitle: 'романтическое приключение',
+      price: 480,
+    },
+    {
+      id: 2,
+      img: '/images/night-in-mountains.png',
+      rating: "4.5",
+      title: 'Ночь в горах',
+      subtitle: 'в компании друзей',
+      price: 500,
+    },
+    {
+      id: 3,
+      img: '/images/training-in-mountains.png',
+      rating: "5.0",
+      title: 'Растяжка в горах',
+      subtitle: 'для тех, кто забоится о себе',
+      price: 230,
+    }
+  ];
+
+  materials: IMaterial[] = [
+    {
+      id: 1,
+      img: '/images/italy-city.png',
+      title: 'Красивая Италия, какая она в реальности?',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      date: "01/04/2023",
+      button: 'читать статью',
+    },
+    {
+      id: 2,
+      img: '/images/fly-sky.png',
+      title: 'Долой сомнения! Весь мир открыт для вас!',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
+      date: "01/04/2023",
+      button: 'читать статью',
+    },
+    {
+      id: 3,
+      img: '/images/solo-travel-girl.png',
+      title: 'Как подготовиться к путешествию в одиночку? ',
+      description: 'Для современного мира базовый вектор развития предполагает.',
+      date: "01/04/2023",
+      button: 'читать статью',
+    },
+    {
+      id: 4,
+      img: '/images/india-house.png',
+      title: 'Индия ... летим?',
+      description: 'Для современного мира базовый.',
+      date: "01/04/2023",
+      button: 'читать статью',
+    }
+
   ];
 
   constructor() {
@@ -88,13 +162,13 @@ export class AppComponent {
 
   private saveVisitDate(): void {
     const date: string = new Date().toISOString();
-    localStorage.setItem('last-visit', date);
+    this.localStorageControl.setValue('last-visit', date);
   }
 
   private updateLoginCount(): void {
-    let visits: number = parseInt(localStorage.getItem('visit-count') || '0');
+    let visits: number = parseInt(this.localStorageControl.getValue('visit-count') || '0');
     visits = visits + 1;
-    localStorage.setItem('visit-count', visits.toString());
+    this.localStorageControl.setValue('visit-count', visits.toString());
   }
 
   userList: IUser[] = [
