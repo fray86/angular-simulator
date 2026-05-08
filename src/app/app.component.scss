@@ -550,7 +550,7 @@
   padding-bottom: 15px;
 }
 
-.messeges-container {
+.messages-container {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -560,7 +560,7 @@
   gap: 15px;
 }
 
-.messege-item {
+.message-item {
   width: 350px;
   height: 70px;
   border-radius: 10px;
@@ -571,17 +571,17 @@
   padding-left: 15px;
   animation: slideIn 0.3s forwards;
   
-  .text-content-messege {
+  .text-content-message {
     margin-left: 15px;
     
-    .messege-text {
+    .message-text {
       font-size: 16px;
       line-height: 20px;
       margin: 0;
       color: var(--white-color)
     }
   }
-  .messege-close-btn {
+  .message-close-btn {
     background: none;
     border: none;
     align-self: flex-start;

@@ -103,7 +103,7 @@
         "consectetur"и занялся его поисками в классической латинской
         литературе.
         </p>
-        <button id="programms-btn" class="about-programm-btn btn-general" (click)="messegeServies.addMessege('Программа недоступна', MessageTypes.WARN)">Программа тура</button>
+        <button id="programms-btn" class="about-programm-btn btn-general" (click)="messageService.addMessage('Программа недоступна', MessageType.WARN)">Программа тура</button>
       </div>
     </div>
   </section>
@@ -122,15 +122,15 @@
         <div class="features-list">
           @for (feature of features; track feature.id) {
             <div class="features-item">
-              <img class="feature-icon" [src]="feature.img" [alt]="feature.title">
+              <img class="feature-icon" [src]="'/images/' + feature.img + '.svg'" [alt]="feature.title">
               <div class="about-features">
-                <h2 class="feature-title fw-bold">{{feature.title}}</h2>
-                <p class="feature-description">{{feature.description}}</p>
+                <h2 class="feature-title fw-bold">{{ feature.title }}</h2>
+                <p class="feature-description">{{ feature.description }}</p>
               </div>
             </div>
           }
         </div>
-        <button id="price-programm-btn" class="btn-general about-programm-btn" (click)="messegeServies.addMessege('Стоимость отправлена на почту', MessageTypes.INFO)">Стоимость программ</button>
+        <button id="price-programm-btn" class="btn-general about-programm-btn" (click)="messageService.addMessage('Стоимость отправлена на почту', MessageType.INFO)">Стоимость программ</button>
       </div>
       <div class="images-container">
         <img class="gallery-img" src="/images/coffee.png" alt="coffee">
@@ -151,22 +151,22 @@
         <div class="direction-list">
           @for (direction of directions; track direction.id) {
             <div class="direction-item">
-              <img class="direction-img" [src]="direction.img" [alt]="direction.title">
+              <img class="direction-img" [src]="'/images/' + direction.img + '.png'" [alt]="direction.title">
               <span class="direction-rating fw-SemiBold">
                 <img src="/images/rating-star.svg" alt="rating-star" class="star-icon">
-                {{direction.rating}}
+                {{ direction.rating }}
               </span>
               <div class="about-direction">
                 <div class="direction-text-content">
-                <h2 class="direction-title fw-bold">{{direction.title}}</h2>
-                <p class="direction-subtitle">{{direction.subtitle}}</p>
+                <h2 class="direction-title fw-bold">{{ direction.title }}</h2>
+                <p class="direction-subtitle">{{ direction.subtitle }}</p>
                 </div>
-                <span class="direction-price">{{direction.price}}</span>
+                <span class="direction-price">{{ direction.price }}</span>
               </div>
             </div>
           }
         </div>
-      <button id="direction-button" class="btn-general mid-section-btn" (click)="messegeServies.addMessege('Направления получены', MessageTypes.SUCCESS)">
+      <button id="direction-button" class="btn-general mid-section-btn" (click)="messageService.addMessage('Направления получены', MessageType.SUCCESS)">
         Рейтинг направлений
       </button>
     </div>
@@ -182,36 +182,36 @@
     <div class="materials-list">
     @for (material of materials; track material.id) {
       <div class="materials-item">
-        <img class="materials-img" [src]="material.img" [alt]="material.title">
+        <img class="materials-img" [src]="'/images/' + material.img + '.png'" [alt]="material.title">
         <div class="material-text-content">
-        <h3 class="material-title fw-bold">{{material.title}}</h3>
-        <p class="material-description fw-regular material-bottom-text">{{material.description}}</p>
+        <h3 class="material-title fw-bold">{{ material.title }}</h3>
+        <p class="material-description fw-regular material-bottom-text">{{ material.description }}</p>
         <div class="materials-blog-bottom">
-          <span class="material-date fw-bold material-bottom-text">{{material.date}}</span>
-          <button id="material-link-button" class="fw-bold material-bottom-text material-button">{{material.button}}</button>
+          <span class="material-date fw-bold material-bottom-text">{{ material.date }}</span>
+          <button id="material-link-button" class="fw-bold material-bottom-text material-button">{{ material.button }}</button>
         </div>
         </div>
       </div>
     }
     </div>
-    <button id="materials-btn" class="btn-general mid-section-btn" (click)="messegeServies.addMessege('Материалы недоступны', MessageTypes.ERROR)">Другие материалы</button>
+    <button id="materials-btn" class="btn-general mid-section-btn" (click)="messageService.addMessage('Материалы недоступны', MessageType.ERROR)">Другие материалы</button>
     </div>
   </section>
-  <div class="messeges-container">
-    @for ( item of messegeServies.messeges; track item) {
-      <ng-container [ngTemplateOutlet]="msgTemplate" [ngTemplateOutletContext]="{ item: item}">
+  <div class="messages-container">
+    @for (item of messageService.messages; track item) {
+      <ng-container [ngTemplateOutlet]="msgTemplate" [ngTemplateOutletContext]="{ item: item }">
       </ng-container>
     }
   </div>
   <ng-template #msgTemplate let-msg="item">
-    <div class="messege-item">
-      <img src="/images/messege-icon.svg" alt="messege icon" width="40px" height="40px">
-      <div class="text-content-messege">
-        <h5 class="messege-text fw-bold">{{msg.type}}</h5>
-        <span class="messege-text fw-regular">{{msg.messege}}</span>
+    <div class="message-item">
+      <img src="/images/message-icon.svg" alt="message icon" width="40px" height="40px">
+      <div class="text-content-message">
+        <h5 class="message-text fw-bold">{{ msg.type }}</h5>
+        <span class="message-text fw-regular">{{ msg.message }}</span>
       </div>
-      <button class="messege-close-btn" id="messege-close-btn" (click)="messegeServies.delete(msg)">
-        <img src="/images/close-msg-btn.svg" alt="close messege">
+      <button class="message-close-btn" id="message-close-btn" (click)="messageService.delete(msg)">
+        <img src="/images/close-msg-btn.svg" alt="close message">
       </button>
     </div>
   </ng-template>
