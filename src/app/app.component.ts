@@ -23,11 +23,11 @@ import { NgTemplateOutlet } from "@angular/common";
 })
 export class AppComponent {
 
-  public messageService: MessageService = inject(MessageService);
+  messageService: MessageService = inject(MessageService);
 
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  MessageType: typeof Message = Message; 
+  messageType: typeof Message = Message; 
   count: number = 0;
   modeType: typeof Mode = Mode; 
   currentMode: Mode = Mode.DATE;
@@ -96,7 +96,6 @@ export class AppComponent {
       title: 'Красивая Италия, какая она в реальности?',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       date: "01/04/2023",
-      button: 'читать статью',
     },
     {
       id: 2,
@@ -104,7 +103,6 @@ export class AppComponent {
       title: 'Долой сомнения! Весь мир открыт для вас!',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
       date: "01/04/2023",
-      button: 'читать статью',
     },
     {
       id: 3,
@@ -112,7 +110,6 @@ export class AppComponent {
       title: 'Как подготовиться к путешествию в одиночку? ',
       description: 'Для современного мира базовый вектор развития предполагает.',
       date: "01/04/2023",
-      button: 'читать статью',
     },
     {
       id: 4,
@@ -120,9 +117,7 @@ export class AppComponent {
       title: 'Индия ... летим?',
       description: 'Для современного мира базовый.',
       date: "01/04/2023",
-      button: 'читать статью',
     }
-
   ];
 
   constructor() {

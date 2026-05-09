@@ -4,5 +4,4 @@ export interface IMaterial {
   title: string;
   description: string;
   date: string;
-  button: any;
 }

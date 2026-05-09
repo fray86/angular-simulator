@@ -23,4 +23,5 @@ export class MessageService {
   delete(removedMsg: IMessage): void {
     this.messages = this.messages.filter((message: IMessage) => message !== removedMsg);
   }
+  
 }

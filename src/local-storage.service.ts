@@ -10,7 +10,7 @@ export class LocalStorageService {
   }
   
   getValue<T>(key: string): T | null {
-    const data = localStorage.getItem(key);
+    const data: string | null = localStorage.getItem(key);
     if (data) {
       return JSON.parse(data);
     } else {
@@ -25,4 +25,5 @@ export class LocalStorageService {
   clearAll(): void {
     localStorage.clear();
   }
+
 }
