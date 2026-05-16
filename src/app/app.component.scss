@@ -325,6 +325,7 @@
 
 .feature-container {
   padding-top: 80px;
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   background-color: rgba(243, 245, 244, 1);
@@ -362,3 +363,240 @@
   object-fit: cover;
 }
 
+.direction-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-subtitle {
+  font-size: 24px;
+  line-height: 20px;
+  color: var(--secondery-color);
+  display: block;
+  padding-bottom: 10px;
+}
+
+.section-header {
+  margin: 0;
+  font-size: 32px;
+  line-height: 120%;
+  padding-bottom: 40px;
+}
+
+.direction-title {
+  font-size: 24px;
+  line-height: 120%;
+  margin: 0;
+}
+
+.direction-subtitle {
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0;
+}
+
+.direction-list {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 50px;
+}
+
+.direction-item {
+  position: relative;
+  overflow: hidden; 
+  border-radius: 32px;
+}
+
+.direction-img {
+  display: block;
+}
+
+.direction-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.direction-rating {
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: flex;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  align-items: center;
+}
+
+.about-direction {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 30px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+   backdrop-filter: blur(2px);
+}
+
+.direction-price {
+  background: rgba(255, 255, 255, 0.4);
+  padding: 8px 16px;
+  border-radius: 4px;
+  gap: 5px;
+  display: flex;
+  line-height: 24px;
+  font-size: 20px;
+}
+
+.direction-price::after {
+  content: "$";
+}
+
+.mid-section-btn {
+  color: var(--white-color);
+  background-color: rgb(26, 62, 62);
+  font-size: 16px;
+  padding: 16px 36px;
+}
+
+.travel-blog-section {
+  padding-top: 80px;
+  padding-bottom: 100px;
+  background-color: rgba(243, 245, 244, 1);
+}
+
+.travel-blog-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.materials-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  row-gap: 15px;
+  padding-bottom: 50px;
+}
+
+.materials-item {
+  padding: 15px;
+  display: flex;
+  width: 47%;
+  gap: 24px;
+  background-color: var(--white-color);
+  border-radius: 10px;
+}
+
+.materials-item:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+}
+
+.materials-item:hover .material-title {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: #1A3E3E;
+  color: #1A3E3E;
+}
+
+.material-title {
+  font-size: 24px;
+  line-height: 32px;
+  margin: 0;
+  padding-top: 15px;
+  text-decoration: none;
+}
+
+.material-bottom-text {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.material-text-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.material-date {
+  color: var(--secondery-color);
+}
+
+.material-description {
+  padding-top: 25px;
+  flex-grow: 1;
+}
+
+.material-button {
+  color: rgba(26, 62, 62, 1);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.materials-blog-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.messages-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 15px;
+}
+
+.message-item {
+  width: 350px;
+  height: 70px;
+  border-radius: 10px;
+  border: 1px;
+  background: rgba(15, 23, 42, 0.85);
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  animation: slideIn 0.3s forwards;
+  
+  .text-content-message {
+    margin-left: 15px;
+    
+    .message-text {
+      font-size: 16px;
+      line-height: 20px;
+      margin: 0;
+      color: var(--white-color)
+    }
+  }
+  .message-close-btn {
+    background: none;
+    border: none;
+    align-self: flex-start;
+    padding-top: 7px;
+    margin-left: auto;
+    cursor: pointer;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+}

@@ -1,4 +1,4 @@
-export enum InputsType {
+export enum Widget {
   TEXT = 'text',
   DATE = 'date'
 }
