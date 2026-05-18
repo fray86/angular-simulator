@@ -14,6 +14,7 @@ import { MessageService } from '../message.service';
 import { LocalStorageService} from '../local-storage.service'
 import { Message } from '../enums/Message';
 import { NgTemplateOutlet } from "@angular/common";
+import { IPhoto } from './interfaces/IPhoto';
 
 @Component({
   selector: 'app-root',
@@ -61,6 +62,33 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
     }
   ];
+
+  photos: IPhoto[] = [
+    {
+      id: 1,
+      img: 'people-with-ballon'
+    },
+    {
+      id: 2,
+      img: 'map-with-camera'
+    },
+    {
+      id: 3,
+      img: 'sea-city'
+    },
+    {
+      id: 4,
+      img: 'beach-from-sky'
+    },
+    {
+      id: 5,
+      img: 'girl-in-canion'
+    },
+    {
+      id: 6,
+      img: 'book-glasses'
+    }
+  ]
 
   directions: IDirection[] = [
     {

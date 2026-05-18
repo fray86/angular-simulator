@@ -197,6 +197,50 @@
     <button id="materials-btn" class="btn-general mid-section-btn" (click)="messageService.addMessage('Материалы недоступны', messageType.ERROR)">Другие материалы</button>
     </div>
   </section>
+  <section class="photos-blog-section">
+    <div class="container photo-blog-container">
+      <span class="section-subtitle">
+        фото-отчет
+      </span>
+      <h2 class="section-header">
+        Делимся впечатлениями
+      </h2>
+      <div class="photos-container">
+        @for (photo of photos; track photo.id) {
+          <div class="photo-item" [class.photo-item--wide]="photo.id === 1 || photo.id === 5">
+            <img class="photo-item" [src]="'/images/' + photo.img + '.png'" [alt]="photo">
+          </div>
+        }
+      </div>
+      <button id='pinterest-btn' class="btn-general mid-section-btn">Наш pinterest</button>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+    <div class="sub-container">
+      <div class="sub-title">
+        <span class="subs-subtitle fw-regular">
+          актуально
+        </span>
+        <h2 class="subs-title fw-ExtraBold">
+          Получайте полезные рассылки о путешествиях
+        </h2>
+      </div>
+      <div>
+        <span>
+          Введите e-mail адрес
+        </span>
+    <form class="email-form" id="email-form" action="">
+        <input required type="email" name="email" id="footer-sub" placeholder="name@domain.com">
+        <button type="submit" class="sub-btn">Подписаться на новости</button>
+      </form>
+      <p>
+        подписываясь на новости, вы автоматически соглашаетесь с условиями обработки персональных данных и правилами рекламных рассылок
+      </p>
+      </div>
+      </div>
+      </div>
+  </footer>
   <div class="messages-container">
     @for (item of messageService.messages; track item) {
       <ng-container [ngTemplateOutlet]="msgTemplate" [ngTemplateOutletContext]="{ item: item }">
