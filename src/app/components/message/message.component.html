@@ -1,0 +1,18 @@
+<div class="messages-container">
+  @for (item of messageService.messages; track item) {
+    <ng-container [ngTemplateOutlet]="msgTemplate" [ngTemplateOutletContext]="{ item: item }">
+    </ng-container>
+  }
+</div>
+<ng-template #msgTemplate let-msg="item">
+  <div class="message-item">
+    <img src="/images/message-icon.svg" alt="message icon" width="40px" height="40px">
+    <div class="text-content-message">
+      <h5 class="message-text fw-bold">{{ msg.type }}</h5>
+      <span class="message-text fw-regular">{{ msg.message }}</span>
+    </div>
+    <button class="message-close-btn" id="message-close-btn" (click)="messageService.delete(msg)">
+      <img src="/images/close-btn.svg" alt="close message">
+    </button>
+  </div>
+</ng-template>

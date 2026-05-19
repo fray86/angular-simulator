@@ -9,7 +9,7 @@ export class MessageService {
   
   messages: IMessage[] = [];
 
-  addMessage(text: string, type: Message): void {
+  private addMessage(text: string, type: Message): void {
     const newMessage: IMessage = {
       message: text,
       type: type
@@ -24,4 +24,20 @@ export class MessageService {
     this.messages = this.messages.filter((message: IMessage) => message !== removedMsg);
   }
   
+  showWarn(text: string): void {
+    this.addMessage( text, Message.WARN);
+  } 
+  
+  showError(text: string): void {
+    this.addMessage( text, Message.ERROR);
+  } 
+  
+  showSuccess(text: string): void {
+    this.addMessage( text, Message.SUCCESS);
+  }
+
+  showInfo(text: string): void {
+    this.addMessage( text, Message.INFO);
+  }
+
 }
