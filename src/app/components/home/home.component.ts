@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { IFeature } from '../../interfaces/IFeature';
 import { IDirection } from '../../interfaces/IDirection';
 import { IMaterial } from '../../interfaces/IMaterial';
-import { IPhoto } from '../../interfaces/IPhoto';
 import { MessageService } from '../../../message.service';
 import { Message } from '../../../enums/Message';
 import { Widget } from '../../../enums/Widget';
@@ -26,6 +25,7 @@ export class HomeComponent {
   widgetType: typeof Widget = Widget;
   currentWidgetType: Widget = Widget.TEXT;
   liveInput!: string;
+  photos: string[] = [ 'people-with-ballon', 'map-with-camera', 'sea-city', 'beach-from-sky', 'girl-in-canion', 'book-glasses' ];
   
   features: IFeature[] = [
     {
@@ -47,33 +47,6 @@ export class HomeComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
     }
   ];
-  
-  photos: IPhoto[] = [
-    {
-      id: 1,
-      img: 'people-with-ballon'
-    },
-    {
-      id: 2,
-      img: 'map-with-camera'
-    },
-    {
-      id: 3,
-      img: 'sea-city'
-    },
-    {
-      id: 4,
-      img: 'beach-from-sky'
-    },
-    {
-      id: 5,
-      img: 'girl-in-canion'
-    },
-    {
-      id: 6,
-      img: 'book-glasses'
-    }
-  ]
   
   directions: IDirection[] = [
     {

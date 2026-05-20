@@ -1,6 +1,6 @@
 <div class="messages-container">
-  @for (item of messageService.messages; track item) {
-    <ng-container [ngTemplateOutlet]="msgTemplate" [ngTemplateOutletContext]="{ item: item }">
+  @for (msg of messageService.messages; track msg) {
+    <ng-container [ngTemplateOutlet]="msgTemplate" [ngTemplateOutletContext]="{ item: msg }">
     </ng-container>
   }
 </div>

@@ -29,15 +29,15 @@ export class MessageService {
   } 
   
   showError(text: string): void {
-    this.addMessage( text, Message.ERROR);
+    this.addMessage(text, Message.ERROR);
   } 
   
   showSuccess(text: string): void {
-    this.addMessage( text, Message.SUCCESS);
+    this.addMessage(text, Message.SUCCESS);
   }
 
   showInfo(text: string): void {
-    this.addMessage( text, Message.INFO);
+    this.addMessage(text, Message.INFO);
   }
 
 }

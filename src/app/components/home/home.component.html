@@ -155,9 +155,9 @@
     <span class="section-subtitle"> фото-отчет </span>
     <h2 class="section-header fw-bold">Делимся впечатлениями</h2>
     <div class="photos-container">
-      @for (photo of photos; track photo.id) {
-        <div class="photo-item" [class.photo-item--wide]="photo.id === 1 || photo.id === 5">
-          <img class="photo-item" [src]="'/images/' + photo.img + '.png'" [alt]="photo" />
+      @for (photo of photos; track photo; let i = $index) {
+        <div class="photo-item" [class.photo-item--wide]="i === 0 || i === 4">
+          <img class="photo-item" [src]="'/images/' + photo + '.png'" [alt]="photo"/>
         </div>
       }
     </div>
