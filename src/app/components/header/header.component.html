@@ -1,0 +1,33 @@
+<header class="header">
+  <div class="container super-header">
+    <div class="logo">
+      <a class="logo-container" href="/">
+        <img src="/images/logo.svg" alt="Румтибет логотип">
+        <span class="logo-company-name">{{ companyName }}</span>
+      </a>
+    </div>
+    <nav class="nav-list">
+      @for (nav of navigations; track nav.link) {
+        <a id="home-link" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="nav.link">{{ nav.name }}</a>
+      }
+    </nav>
+    <button id="consult-header-btn" type="button" class="consult-btn btn-general">
+      Консультация
+    </button> 
+  </div>
+  <div class="widget-container">
+    @if (currentMode === modeType.DATE) {
+      <div id="date-header">
+        {{ currentTime }}
+        <button id="show-counter-btn" class="consult-btn toggle-header-btn" (click)="toggleMode(modeType.COUNTER)">Показать кликер</button>
+      </div>
+    } @else if ( currentMode === modeType.COUNTER) {
+      <div id="counter-header">
+        <button id="counter-plus-btn" class="change-value-count-btn" (click)="increase()">+</button>
+        {{ count }}
+        <button id="counter-minus-btn" class="change-value-count-btn" (click)="decrease()" [disabled]="count === 0">-</button>
+        <button id="show-date-btn" class="consult-btn toggle-header-btn" (click)="toggleMode(modeType.DATE)">Показать дату</button>
+      </div>
+    }
+  </div>
+</header>
