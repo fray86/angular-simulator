@@ -1,0 +1,166 @@
+<div class="main-section">
+  <section class="container main-container">
+    <h1 class="main-tittle fw-regular">
+      Насладись прогулкой в горах <br/>
+      с командой единомышленников
+    </h1>
+    <form class="select-programm-container">
+      <div class="form-group">
+        <select name="location" [(ngModel)]="selectedLocation" id="select-location-btn" class="field-base select-field">
+          <option class="option-value" value="" hidden>Локация для тура</option>
+          <option class="option-value" value="nefteugansk">Нефтеюганск</option>
+          <option class="option-value" value="moscow">Москва</option>
+          <option class="option-value" value="china">Китай</option>
+          <option class="option-value" value="mars">Марс</option>
+        </select>
+        <label class="field-hint fw-regular"> выберите из списка </label>
+      </div>
+      <div class="form-group">
+        <input id="input-date" name="date" [(ngModel)]="selectedDate" placeholder="Дата похода" class="field-base" [type]="currentWidgetType" (focus)="onFocus()"/>
+        <label class="field-hint fw-regular"> укажите дату </label>
+      </div>
+      <div class="form-group">
+        <select name="members" [(ngModel)]="selectedMembers" id="select-members-btn" class="field-base select-field">
+          <option class="option-value" value="" hidden>Участники</option>
+          <option class="option-value" value="maxim">Максим</option>
+          <option class="option-value" value="batman">Бетмен</option>
+          <option class="option-value" value="pikachu">Пикачу</option>
+          <option class="option-value" value="boyarsky">Боярский</option>
+        </select>
+        <label class="field-hint fw-regular"> выберите из списка </label>
+      </div>
+      <button id="search-programm-btn" class="btn-general btn-search-programm" [disabled]="!selectedDate || !selectedLocation || !selectedMembers">
+        Найти программу
+      </button>
+    </form>
+    <div class="live-input-container">
+      <input class="live-input" type="text" [(ngModel)]="liveInput" />
+      <p class="live-input-value">{{ liveInput }}</p>
+    </div>
+  </section>
+</div>
+<section class="about-programm-container">
+  <div class="container">
+    <div class="play-images-container">
+      <img src="/images/about-mountain-top.png" alt="mountains" class="about-img img-top" />
+      <img src="/images/about-house-bottom.png" alt="house" class="about-img img-bottom" />
+      <button id="play-on-img-btn" class="play-btn">
+        <img src="/images/play-btn.svg" alt="play" />
+      </button>
+    </div>
+    <div class="about-programm">
+      <span class="about-travel-subtitle fw-regular">о нашем походе</span>
+      <h2 class="about-title fw-ExtraBold">Исследуйте все горные массивы мира вместе с нами</h2>
+      <p class="about-text fw-regular">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат
+        Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его
+        поисками в классической латинской литературе.
+      </p>
+      <button id="programms-btn" class="about-programm-btn btn-general" (click)="messageService.showWarn('Программа недоступна')">
+        Программа тура
+      </button>
+    </div>
+  </div>
+</section>
+<section class="feature-container">
+  <div class="container programs-section">
+    <div class="programs-info">
+      <span class="about-travel-subtitle fw-regular"> наше предложение </span>
+      <h2 class="about-title fw-ExtraBold">Лучшие программы для тебя</h2>
+      <p class="about-text fw-regular">
+        корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
+      </p>
+      <div class="features-list">
+        @for (feature of features; track feature.id) {
+          <div class="features-item">
+            <img class="feature-icon" [src]="'/images/' + feature.img + '.svg'" [alt]="feature.title"/>
+            <div class="about-features">
+              <h2 class="feature-title fw-bold">{{ feature.title }}</h2>
+              <p class="feature-description">{{ feature.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+      <button id="price-programm-btn" class="btn-general about-programm-btn" (click)="messageService.showInfo('Стоимость отправлена на почту')">
+        Стоимость программ
+      </button>
+    </div>
+    <div class="images-container">
+      <img class="gallery-img" src="/images/coffee.png" alt="coffee" />
+      <img class="gallery-img" src="/images/man-in-mountain.png" alt="mountain man" />
+      <img class="gallery-img" src="/images/man-in-scooter.png" alt="scooter man" />
+      <img class="gallery-img" src="/images/mountains-with-river.png" alt="mountains with river" />
+    </div>
+  </div>
+</section>
+<section>
+  <div class="direction-section container">
+    <span class="section-subtitle"> по версии отдыхающих </span>
+    <h2 class="section-header">Популярные направления</h2>
+    <div class="direction-list">
+      @for (direction of directions; track direction.id) {
+        <div class="direction-item">
+          <img class="direction-img" [src]="'/images/' + direction.img + '.png'" [alt]="direction.title"/>
+          <span class="direction-rating fw-SemiBold">
+            <img src="/images/rating-star-icon.svg" alt="rating-star" class="star-icon" />
+            {{ direction.rating }}
+          </span>
+          <div class="about-direction">
+            <div class="direction-text-content">
+              <h2 class="direction-title fw-bold">{{ direction.title }}</h2>
+              <p class="direction-subtitle">{{ direction.subtitle }}</p>
+            </div>
+            <span class="direction-price">{{ direction.price }}</span>
+          </div>
+        </div>
+      }
+    </div>
+    <button id="direction-button" class="btn-general mid-section-btn" (click)="messageService.showSuccess('Направления получены')">
+      Рейтинг направлений
+    </button>
+  </div>
+</section>
+<section class="travel-blog-section">
+  <div class="container travel-blog-container">
+    <span class="section-subtitle"> делимся впечатлениями </span>
+    <h2 class="section-header">Блог о путешествиях</h2>
+    <div class="materials-list">
+      @for (material of materials; track material.id) {
+        <div class="materials-item">
+          <img class="materials-img" [src]="'/images/' + material.img + '.png'" [alt]="material.title"/>
+          <div class="material-text-content">
+            <h3 class="material-title fw-bold">{{ material.title }}</h3>
+            <p class="material-description fw-regular material-bottom-text">
+              {{ material.description }}
+            </p>
+            <div class="materials-blog-bottom">
+              <span class="material-date fw-bold material-bottom-text">{{ material.date }}</span>
+              <button id="material-link-button" class="fw-bold material-bottom-text material-button">
+                читать статью
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button id="materials-btn" class="btn-general mid-section-btn" (click)="messageService.showError('Материалы недоступны')">
+      Другие материалы
+    </button>
+  </div>
+</section>
+<section class="photos-blog-section">
+  <div class="container photo-blog-container">
+    <span class="section-subtitle"> фото-отчет </span>
+    <h2 class="section-header fw-bold">Делимся впечатлениями</h2>
+    <div class="photos-container">
+      @for (photo of photos; track photo; let i = $index) {
+        <div class="photo-item" [class.photo-item--wide]="i === 0 || i === 4">
+          <img class="photo-item" [src]="'/images/' + photo + '.png'" [alt]="photo"/>
+        </div>
+      }
+    </div>
+    <button id="pinterest-btn" class="btn-general mid-section-btn">Наш pinterest</button>
+  </div>
+</section>
