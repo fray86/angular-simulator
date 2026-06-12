@@ -14,7 +14,7 @@ export class LoaderSpinerComponent {
   loaderService: LoaderService = inject(LoaderService);
 
   isLoading$: Observable<boolean> = this.loaderService.isLoading$.pipe(
-    tap(isLoading => {
+    tap((isLoading: boolean) => {
       document.body.style.overflow = isLoading ? 'hidden' : '';
     })
   );
