@@ -2,26 +2,26 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()" id="create-user-form">
   <div>
     <h3>Основное</h3>
-    <label for="">Имя</label>
+    <label for="inputName">Имя</label>
     <input type="text" formControlName="name" id="inputName">
-    <label for="">Фамилия</label>
+    <label for="inputSurname">Фамилия</label>
     <input type="text" formControlName="username" id="inputSurname">
-    <label for="">email</label>
+    <label for="inputEmail">email</label>
     <input type="text" formControlName="email" id="inputEmail">
-    <label for="">Телефон</label>
+    <label for="inputPhone">Телефон</label>
     <input type="text" formControlName="phone" id="inputPhone">
-    <label for="">Веб-сайт</label>
+    <label for="inputWebsite">Веб-сайт</label>
     <input type="text" formControlName="website" id="inputWebsite">
   </div>
   <div formGroupName="address">
     <h3>Адресс</h3>
-    <label for="">Город</label>
+    <label for="inputCity">Город</label>
     <input type="text" formControlName="city" id="inputCity">
-    <label for="">Улица</label>
+    <label for="inputStreet">Улица</label>
     <input type="text" formControlName="street" id="inputStreet">
-    <label for="">Офис</label>
+    <label for="inputSuite">Офис</label>
     <input type="text" formControlName="suite" id="inputSuite">
-    <label for="">Индекс</label>
+    <label for="inputZip">Индекс</label>
     <input type="text" formControlName="zipcode" id="inputZip">
     <div formGroupName="geo">
       <h3>Координаты</h3>
@@ -31,11 +31,11 @@
   </div>
   <div formGroupName="company">
     <h3>О Компании</h3>
-    <label for="">Компания</label>
+    <label for="inputCompany">Компания</label>
     <input type="text" formControlName="name" id="inputCompany">
-    <label for="">Миссия</label>
+    <label for="inputMission">Миссия</label>
     <input type="text" formControlName="catchPhrase" id="inputMission">
-    <label for="">Специализация</label>
+    <label for="inputSpec">Специализация</label>
     <input type="text" formControlName="bs" id="inputSpec">
   </div>
   <button id="submit-btn" type="submit" [disabled]="userForm.invalid">Отправить</button>

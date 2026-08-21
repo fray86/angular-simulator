@@ -11,7 +11,7 @@
       <h5 class="message-text fw-bold">{{ msg.type }}</h5>
       <span class="message-text fw-regular">{{ msg.message }}</span>
     </div>
-    <button class="message-close-btn" id="message-close-btn" (click)="messageService.delete(msg)">
+    <button class="message-close-btn" [id]="'message-close-btn-' + msg.type" (click)="messageService.delete(msg)">
       <img src="/images/close-btn.svg" alt="close message">
     </button>
   </div>
