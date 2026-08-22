@@ -13,7 +13,7 @@ export class UsersFilterComponent implements OnInit {
 
   private destroyRef: DestroyRef = inject(DestroyRef);
 
-  @Output() filter: EventEmitter<string> = new EventEmitter<string>();
+  @Output() filterUser: EventEmitter<string> = new EventEmitter<string>();
 
   liveInput: FormControl<string | null> = new FormControl<string>('');
 
@@ -21,8 +21,8 @@ export class UsersFilterComponent implements OnInit {
     this.liveInput.valueChanges.pipe(
       debounceTime(200), 
       distinctUntilChanged(),
-      map(text => (text || '').trim().toLowerCase()),
-      tap(cleanText => this.filter.emit(cleanText)),
+      map((text: string | null) => (text || '').trim().toLowerCase()),
+      tap((cleanText: string) => this.filterUser.emit(cleanText)),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe();
   }

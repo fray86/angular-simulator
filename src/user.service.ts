@@ -29,6 +29,18 @@ export class UserService {
     return this.usersSubject.value;
   }
 
+  createUser(newUser: IUser): void {
+    const currentUsers: IUser[] = this.getUsers();
+    const updatedUsers: IUser[] = [newUser,...currentUsers];
+    this.setUsers(updatedUsers);
+  }
+
+  deleteUser(id: number): void {
+    const currentUsers: IUser[] = this.getUsers();
+    const updatedUsers: IUser[] = currentUsers.filter((user: IUser) => user.id !== id);
+    this.setUsers(updatedUsers);
+  }
+
   loadUsers(): Observable<IUser[]> {
     const localData: IUser[] | null = this.localStorageService.getValue<IUser[]>('users');
     if (localData) {

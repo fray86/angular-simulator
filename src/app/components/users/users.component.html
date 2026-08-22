@@ -1,5 +1,5 @@
-<app-user-create (create)="onCreateUser($event)"></app-user-create>
-<app-users-filter (filter)="onFilterChange($event)"></app-users-filter>
+<app-user-create (createUser)="onCreateUser($event)"></app-user-create>
+<app-users-filter (filterUser)="onFilterChange($event)"></app-users-filter>
 <h1 class="users-title-section">Список пользователей</h1>
 <div class="users-container container">
   @for(user of (filteredUsers$ | async); track user.id) {

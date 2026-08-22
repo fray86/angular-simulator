@@ -21,8 +21,8 @@ export class UsersComponent implements OnInit {
   private searchValue$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   
   filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.searchValue$]).pipe(
-    map(([users, textValue]) => {
-      return users.filter(user => user.name.toLowerCase().includes(textValue))
+    map(([users, textValue]: [IUser[], string]) => {
+      return users.filter((user: IUser) => user.name.toLowerCase().includes(textValue))
     })
   )
 
@@ -34,15 +34,11 @@ export class UsersComponent implements OnInit {
   }
 
   onDeleteUser(id: number): void {
-    const currentUsers: IUser[] = this.userService.getUsers();
-    const updatedUsers: IUser[] = currentUsers.filter(user => user.id !== id);
-    this.userService.setUsers(updatedUsers);
+    this.userService.deleteUser(id);
   }
 
   onCreateUser(newUser: IUser): void {
-    const currentUsers: IUser[] = this.userService.getUsers();
-    const updatedUsers: IUser[] = [newUser,...currentUsers];
-    this.userService.setUsers(updatedUsers);
+    this.userService.createUser(newUser);
   }
 
   onFilterChange(text: string): void {
