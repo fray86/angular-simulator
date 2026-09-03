@@ -1,5 +1,5 @@
 import './training';
-import { Component, inject, numberAttribute } from '@angular/core';
+import { Component, inject, numberAttribute, OnInit } from '@angular/core';
 import { Color } from '../enums/Сolor';
 import { Collection } from './collection';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { MessageComponent } from './components/message/message.component';
 import { LoaderSpinerComponent } from './components/loader-spiner/loader-spiner.component';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-root',
@@ -19,16 +20,21 @@ import { LoaderSpinerComponent } from './components/loader-spiner/loader-spiner.
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   messageService: MessageService = inject(MessageService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  themeService: ThemeService = inject(ThemeService);
 
   companyName: string = 'РУМТИБЕТ';
 
   constructor() {
     this.saveVisitDate();
     this.updateLoginCount();
+  }
+
+  ngOnInit(): void {
+    this.themeService.applyState(this.themeService.getTheme())
   }
 
   isMainColor(color: Color): boolean {

@@ -6,11 +6,14 @@ import { MessageService } from '../../../message.service';
 import { Message } from '../../../enums/Message';
 import { Widget } from '../../../enums/Widget';
 import { FormsModule } from '@angular/forms';
+import { faCalendar, IconDefinition } from '@fortawesome/free-regular-svg-icons'
+import { faAngleDown, faAngleRight, faCirclePlay, faStar, faPersonHiking, faShieldHalved, faTag } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule],
+  imports: [FormsModule, FontAwesomeModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -18,6 +21,11 @@ export class HomeComponent {
 
   messageService: MessageService = inject(MessageService);
 
+  faCalendar: IconDefinition = faCalendar;
+  faAngleDown: IconDefinition = faAngleDown;
+  faAngleRight: IconDefinition = faAngleRight;
+  faCirclePlay: IconDefinition = faCirclePlay;
+  faStar: IconDefinition = faStar;
   selectedLocation: string = "";
   selectedDate: string = "";
   selectedMembers: string = "";
@@ -30,21 +38,24 @@ export class HomeComponent {
   features: IFeature[] = [
     {
       id: 1,
-      img: 'experienced-guide',
+      icon: faPersonHiking,
       title: 'Опытный гид',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      iconColor: '#7FFFD4'
     },
     {
       id: 2,
-      img: 'saved-tavel',
+      icon: faShieldHalved,
       title: 'Безопасный поход',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      iconColor: '#6495ED'
     },
     {
       id: 3,
-      img: 'loyalti-price',
+      icon: faTag,
       title: 'Лояльные цены',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      iconColor: '#FFD700'
     }
   ];
   

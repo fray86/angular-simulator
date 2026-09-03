@@ -6,27 +6,30 @@
     </h1>
     <form class="select-programm-container">
       <div class="form-group">
-        <select name="location" [(ngModel)]="selectedLocation" id="select-location-btn" class="field-base select-field">
+        <select name="location" [(ngModel)]="selectedLocation" id="select-location-btn" class="field-base">
           <option class="option-value" value="" hidden>Локация для тура</option>
           <option class="option-value" value="nefteugansk">Нефтеюганск</option>
           <option class="option-value" value="moscow">Москва</option>
           <option class="option-value" value="china">Китай</option>
           <option class="option-value" value="mars">Марс</option>
         </select>
+        <fa-icon [icon]="faAngleDown" class="input-icon-datepicker"></fa-icon>
         <label class="field-hint fw-regular"> выберите из списка </label>
       </div>
       <div class="form-group">
         <input id="input-date" name="date" [(ngModel)]="selectedDate" placeholder="Дата похода" class="field-base" [type]="currentWidgetType" (focus)="onFocus()"/>
+        <fa-icon [icon]="faCalendar" class="input-icon-datepicker"></fa-icon>
         <label class="field-hint fw-regular"> укажите дату </label>
       </div>
       <div class="form-group">
-        <select name="members" [(ngModel)]="selectedMembers" id="select-members-btn" class="field-base select-field">
+        <select name="members" [(ngModel)]="selectedMembers" id="select-members-btn" class="field-base">
           <option class="option-value" value="" hidden>Участники</option>
           <option class="option-value" value="maxim">Максим</option>
           <option class="option-value" value="batman">Бетмен</option>
           <option class="option-value" value="pikachu">Пикачу</option>
           <option class="option-value" value="boyarsky">Боярский</option>
         </select>
+        <fa-icon [icon]="faAngleDown" class="input-icon-datepicker"></fa-icon>
         <label class="field-hint fw-regular"> выберите из списка </label>
       </div>
       <button id="search-programm-btn" class="btn-general btn-search-programm" [disabled]="!selectedDate || !selectedLocation || !selectedMembers">
@@ -35,6 +38,7 @@
     </form>
     <div class="live-input-container">
       <input class="live-input" type="text" [(ngModel)]="liveInput" />
+      <fa-icon [icon]="faAngleRight" class="input-icon-datepicker input-icon-live"></fa-icon>
       <p class="live-input-value">{{ liveInput }}</p>
     </div>
   </section>
@@ -45,7 +49,7 @@
       <img src="/images/about-mountain-top.png" alt="mountains" class="about-img img-top" />
       <img src="/images/about-house-bottom.png" alt="house" class="about-img img-bottom" />
       <button id="play-on-img-btn" class="play-btn">
-        <img src="/images/play-btn.svg" alt="play" />
+        <fa-icon [icon]="faCirclePlay" class="cirlce-play-btn"></fa-icon>
       </button>
     </div>
     <div class="about-programm">
@@ -75,7 +79,7 @@
       <div class="features-list">
         @for (feature of features; track feature.id) {
           <div class="features-item">
-            <img class="feature-icon" [src]="'/images/' + feature.img + '.svg'" [alt]="feature.title"/>
+            <fa-icon class="feature-icon" [icon]="feature.icon" [style.color]="feature.iconColor"></fa-icon>
             <div class="about-features">
               <h2 class="feature-title fw-bold">{{ feature.title }}</h2>
               <p class="feature-description">{{ feature.description }}</p>
@@ -104,7 +108,7 @@
         <div class="direction-item">
           <img class="direction-img" [src]="'/images/' + direction.img + '.png'" [alt]="direction.title"/>
           <span class="direction-rating fw-SemiBold">
-            <img src="/images/rating-star-icon.svg" alt="rating-star" class="star-icon" />
+            <fa-icon [icon]="faStar" class="star-icon"></fa-icon>
             {{ direction.rating }}
           </span>
           <div class="about-direction">
