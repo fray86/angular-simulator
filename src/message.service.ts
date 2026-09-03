@@ -21,7 +21,7 @@ export class MessageService {
     this.messagesSubject$.next([...this.messagesSubject$.value, newMessage])
     setTimeout(() => {
       this.delete(newMessage)
-    }, 5000);
+    }, 15000);
   }
 
   delete(removedMsg: IMessage): void {

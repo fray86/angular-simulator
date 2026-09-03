@@ -1,0 +1,43 @@
+<h1 class="main-text-user">Создать нового пользователя</h1>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" id="create-user-form">
+  <div>
+    <h3>Основное</h3>
+    <label for="inputName">Имя</label>
+    <input type="text" formControlName="name" id="inputName">
+    <label for="inputSurname">Фамилия</label>
+    <input type="text" formControlName="username" id="inputSurname">
+    <label for="inputEmail">email</label>
+    <input type="text" formControlName="email" id="inputEmail">
+    <label for="inputPhone">Телефон</label>
+    <input type="text" formControlName="phone" id="inputPhone">
+    <label for="inputWebsite">Веб-сайт</label>
+    <input type="text" formControlName="website" id="inputWebsite">
+  </div>
+  <div formGroupName="address">
+    <h3>Адресс</h3>
+    <label for="inputCity">Город</label>
+    <input type="text" formControlName="city" id="inputCity">
+    <label for="inputStreet">Улица</label>
+    <input type="text" formControlName="street" id="inputStreet">
+    <label for="inputSuite">Офис</label>
+    <input type="text" formControlName="suite" id="inputSuite">
+    <label for="inputZip">Индекс</label>
+    <input type="text" formControlName="zipcode" id="inputZip">
+    <div formGroupName="geo">
+      <h3>Координаты</h3>
+      <input type="text" formControlName="lat" id="inputLat">
+      <input type="text" formControlName="lng" id="inputLng">
+    </div>
+  </div>
+  <div formGroupName="company">
+    <h3>О Компании</h3>
+    <label for="inputCompany">Компания</label>
+    <input type="text" formControlName="name" id="inputCompany">
+    <label for="inputMission">Миссия</label>
+    <input type="text" formControlName="catchPhrase" id="inputMission">
+    <label for="inputSpec">Специализация</label>
+    <input type="text" formControlName="bs" id="inputSpec">
+  </div>
+  <button id="submit-btn" type="submit" [disabled]="userForm.invalid">Отправить</button>
+</form>
+
