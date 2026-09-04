@@ -1,29 +1,27 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { Mode } from '../../../enums/Mode'; 
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { INavigation } from '../../interfaces/INavigation';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { FormsModule } from '@angular/forms';
 import { ThemeService } from '../../../theme.service';
-import { tap } from 'rxjs';
 import { faSun, faMoon, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { ColorMode } from '../../../enums/ColorMode';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { Theme } from '../../../enums/Theme';
 import { IThemeOption } from '../../interfaces/IThemeOption';
-import { IThemeState } from '../../interfaces/IThemeState';
+import { AsyncPipe } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, SelectButtonModule, ToggleSwitchModule, FormsModule, FontAwesomeModule],
+  imports: [RouterLink, RouterLinkActive, SelectButtonModule, ToggleSwitchModule, FormsModule, FontAwesomeModule, AsyncPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
 
   themeService: ThemeService = inject(ThemeService);
   destroyRef: DestroyRef = inject(DestroyRef)
@@ -37,6 +35,8 @@ export class HeaderComponent implements OnInit {
   faSun: IconDefinition = faSun;
   faMoon: IconDefinition = faMoon;
   selectedTheme: Theme = Theme.AURA;
+  readonly theme$ = this.themeService.theme$;
+  ColorMode: typeof ColorMode = ColorMode;
 
   themeOptions: IThemeOption[] = [
         { label: 'Aura', value: Theme.AURA },
@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
       name: 'Пользователи',
       link: '/users'
     }
-  ]
+  ];
   
   constructor() {
     setInterval(() => {
@@ -62,16 +62,6 @@ export class HeaderComponent implements OnInit {
     }, 1000);
   }
 
-  ngOnInit(): void {
-    this.themeService.theme$.pipe(
-      tap((value: IThemeState) => {
-        this.checked = value.colorMode === ColorMode.DARK;
-        this.selectedTheme = value.theme;
-      }),
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe();
-  }
-  
   toggleMode(mode: Mode): void {
     this.currentMode = mode;
   }
