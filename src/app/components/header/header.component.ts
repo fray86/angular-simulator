@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Mode } from '../../../enums/Mode'; 
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { INavigation } from '../../interfaces/INavigation';
@@ -24,7 +24,6 @@ import { AsyncPipe } from '@angular/common';
 export class HeaderComponent  {
 
   themeService: ThemeService = inject(ThemeService);
-  destroyRef: DestroyRef = inject(DestroyRef)
 
   count: number = 0;
   modeType: typeof Mode = Mode; 
@@ -34,7 +33,6 @@ export class HeaderComponent  {
   checked: boolean = false; 
   faSun: IconDefinition = faSun;
   faMoon: IconDefinition = faMoon;
-  selectedTheme: Theme = Theme.AURA;
   readonly theme$ = this.themeService.theme$;
   ColorMode: typeof ColorMode = ColorMode;
 
