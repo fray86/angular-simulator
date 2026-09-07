@@ -35,14 +35,14 @@ export class ThemeService {
 
   setTheme(newTheme: Theme): void {
     const currentState: IThemeState = this.getTheme();
-    const updatedState: IThemeState = {...currentState, theme: newTheme};
+    const updatedState: IThemeState = { ...currentState, theme: newTheme };
     this.updateState(updatedState);
     this.applyState(updatedState);
   }
 
   setColor(newColorMode: ColorMode): void {
     const currentState: IThemeState = this.getTheme();
-    const updatedState: IThemeState = {...currentState, colorMode: newColorMode};
+    const updatedState: IThemeState = { ...currentState, colorMode: newColorMode };
     this.updateState(updatedState);
     this.applyState(updatedState);
   }

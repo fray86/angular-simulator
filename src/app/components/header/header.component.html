@@ -17,17 +17,16 @@
   </div>
   <div class="widget-container">
     @if (theme$ | async; as state) {
-    <div class="flex justify-center">
-      <p-selectbutton [options]="themeOptions" [ngModel]="state.theme" (ngModelChange)="onThemeChange($event)" optionLabel="label" optionValue="value" aria-labelledby="basic" />
-    </div>
-    <div>
-      <p-toggleswitch [ngModel]="state.colorMode === ColorMode.DARK" (onChange)="onColorModeChange($event.checked)">
-      <ng-template #handle let-checked="checked">
-        <fa-icon class="theme-icon" [icon]="checked ? faMoon : faSun" [style.color]="checked ? '#d9d9d9' : '#ffd43b'"></fa-icon>
-      </ng-template>
-      </p-toggleswitch>
-    </div>
-  }
+      <div class="flex justify-center">
+        <p-selectbutton [options]="themeOptions" [ngModel]="state.theme" (ngModelChange)="onThemeChange($event)" optionLabel="label" optionValue="value" aria-labelledby="basic" />
+      </div>
+      <div>
+        <p-toggleswitch [ngModel]="state.colorMode === colorMode.DARK" (onChange)="onColorModeChange($event.checked)">
+          <ng-template #handle let-checked="checked"><fa-icon class="theme-icon" [icon]="checked ? faMoon : faSun" [style.color]="checked ? '#d9d9d9' : '#ffd43b'"></fa-icon>
+          </ng-template>
+        </p-toggleswitch>
+      </div>
+    }
     @if (currentMode === modeType.DATE) {
       <div id="date-header">
         {{ currentTime }}

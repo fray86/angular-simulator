@@ -12,7 +12,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { Theme } from '../../../enums/Theme';
 import { IThemeOption } from '../../interfaces/IThemeOption';
 import { AsyncPipe } from '@angular/common';
-
+import { Observable } from 'rxjs';
+import { IThemeState } from '../../interfaces/IThemeState';
 
 
 @Component({
@@ -29,18 +30,17 @@ export class HeaderComponent  {
   modeType: typeof Mode = Mode; 
   currentMode: Mode = Mode.DATE;
   currentTime!: string;
-  companyName: string = 'РУМТИБЕТ';
-  checked: boolean = false; 
+  companyName: string = 'РУМТИБЕТ'; 
   faSun: IconDefinition = faSun;
   faMoon: IconDefinition = faMoon;
-  readonly theme$ = this.themeService.theme$;
-  ColorMode: typeof ColorMode = ColorMode;
+  theme$: Observable<IThemeState> = this.themeService.theme$;
+  colorMode: typeof ColorMode = ColorMode;
 
   themeOptions: IThemeOption[] = [
-        { label: 'Aura', value: Theme.AURA },
-        { label: 'Nora', value: Theme.NORA },
-        { label: 'Lara', value: Theme.LARA }
-    ];
+    { label: 'Aura', value: Theme.AURA },
+    { label: 'Nora', value: Theme.NORA },
+    { label: 'Lara', value: Theme.LARA }
+  ];
 
   navigations: INavigation[] = [
     {
