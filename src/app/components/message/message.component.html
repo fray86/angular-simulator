@@ -6,7 +6,8 @@
 </div>
 <ng-template #msgTemplate let-msg="item">
   <div class="message-item">
-    <img src="/images/message-icon.svg" alt="message icon" width="40px" height="40px">
+    
+    <fa-icon [icon]="faEnvelope" class="msg-icon" alt="message icon" width="60px" height="60px"></fa-icon>
     <div class="text-content-message">
       <h5 class="message-text fw-bold">{{ msg.type }}</h5>
       <span class="message-text fw-regular">{{ msg.message }}</span>

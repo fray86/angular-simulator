@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormGroup, Validators, FormControl, FormsModule, NgForm, ReactiveFormsModule, } from '@angular/forms';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { FormGroup, Validators, FormControl, FormsModule, NgForm, ReactiveFormsModule, FormBuilder, } from '@angular/forms';
 import { IUser } from '../../interfaces/IUser';
+import { FormControls } from '../../types.ts/FormControls';
+import { disabled } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-user-create',
@@ -10,36 +12,38 @@ import { IUser } from '../../interfaces/IUser';
 })
 export class UserCreateComponent {
 
+  fb: FormBuilder = inject(FormBuilder)
+
   @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
   
-  userForm: FormGroup = new FormGroup({
-    name: new FormControl<string | null>('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
-    username: new FormControl<string | null>('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
-    email: new FormControl<string | null>('', [Validators.required, Validators.email, Validators.maxLength(25)]),
-    phone: new FormControl<string | null>('', [Validators.required, Validators.minLength(10), Validators.maxLength(25)]),
-    website: new FormControl<string | null>('', [Validators.maxLength(100)]),
-  
-    address: new FormGroup({
-      city: new FormControl<string | null>('', [Validators.required, Validators.maxLength(50)]),
-      street: new FormControl<string | null>('', [Validators.required, Validators.maxLength(100)]),
-      suite: new FormControl<string | null>('', [Validators.maxLength(50)]),
-      zipcode: new FormControl<string | null>('', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]),
-      geo: new FormGroup({
-        lat: new FormControl<string | null>('', [Validators.required]),
-        lng: new FormControl<string | null>('', [Validators.required]),
-      })
-    }),
 
-    company: new FormGroup({
-      name: new FormControl<string | null>('', [Validators.required, Validators.maxLength(50)]),
-      catchPhrase: new FormControl<string | null>('', [Validators.maxLength(200)]),
-      bs: new FormControl<string | null>('', [Validators.maxLength(100)]),
+  userForm: FormGroup<FormControls<IUser>> = this.fb.nonNullable.group({
+    id: [0],
+    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+    username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(25)]],
+    phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(25)]],
+    website: ['', [Validators.maxLength(100)]],
+    address: this.fb.nonNullable.group({
+      city: ['', [Validators.required, Validators.maxLength(50)]],
+      street: ['', [Validators.required, Validators.maxLength(100)]],
+      suite: ['', [Validators.maxLength(50)]],
+      zipcode: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+      geo: this.fb.nonNullable.group({
+        lat: ['', [Validators.required]],
+        lng: ['', [Validators.required]],
+      }),
+    }),
+    company: this.fb.nonNullable.group({
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      catchPhrase: ['', [Validators.maxLength(200)]],
+      bs: ['', [Validators.maxLength(100)]],
     })
-  });
+  })
   
   onSubmit(): void {
     if (this.userForm.valid) {
-        const newUser: IUser = {id: Date.now(),...this.userForm.value} as IUser;
+        const newUser: IUser = {id: Date.now(), ...this.userForm.getRawValue} as IUser;
         this.createUser.emit(newUser);
         this.userForm.reset();
       }

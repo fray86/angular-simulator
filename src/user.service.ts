@@ -14,7 +14,7 @@ export class UserService {
   userApiService: UserApiService = inject(UserApiService);
   messageService: MessageService = inject(MessageService);
   loaderService: LoaderService = inject(LoaderService);
-  localStorageService: LocalStorageService = inject(LocalStorageService)
+  localStorageService: LocalStorageService = inject(LocalStorageService);
   
   private usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
  
