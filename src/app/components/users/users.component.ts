@@ -6,11 +6,11 @@ import { IUser } from '../../interfaces/IUser';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { UserCreateComponent } from '../user-create/user-create.component';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
-
+import { PluralFormPipe } from '../../pipes/plural-form.pipe';
 
 @Component({
   selector: 'app-users',
-  imports: [AsyncPipe, UserCardComponent, UserCreateComponent, UsersFilterComponent],
+  imports: [AsyncPipe, UserCardComponent, UserCreateComponent, UsersFilterComponent, PluralFormPipe],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })

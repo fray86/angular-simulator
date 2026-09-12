@@ -1,13 +1,17 @@
 <app-user-create (createUser)="onCreateUser($event)"></app-user-create>
 <app-users-filter (filterUser)="onFilterChange($event)"></app-users-filter>
 <h1 class="users-title-section">Список пользователей</h1>
-<div class="users-container container">
-  @for(user of (filteredUsers$ | async); track user.id) {
-    <app-user-card [user]="user" (delete)="onDeleteUser($event)"></app-user-card>
-  } @empty {
-    <div>
-      <p class="error-massage">
-        Нет пользователей для отображения
-      </p>
-    </div>
-  }
+@if (filteredUsers$ | async; as users) {
+  <p class="users-count">{{ users.length }} {{ users.length | pluralForm: 'пользователей' : 'пользователь' : 'пользователя' }}</p>
+  <div class="users-container container">
+    @for(user of users; track user.id) {
+      <app-user-card [user]="user" (delete)="onDeleteUser($event)"></app-user-card>
+    } @empty {
+      <div>
+        <p class="error-massage">
+          Нет пользователей для отображения
+        </p>
+      </div>
+    }
+  </div>
+}
