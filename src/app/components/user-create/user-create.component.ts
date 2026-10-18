@@ -3,10 +3,12 @@ import { FormGroup, Validators, FormControl, FormsModule, NgForm, ReactiveFormsM
 import { IUser } from '../../interfaces/IUser';
 import { FormControls } from '../../types.ts/FormControls';
 import { disabled } from '@angular/forms/signals';
+import { BoldHoverDirective } from '../../directives/bold-hover.directive';
+import { GradientHoverDirective } from '../../directives/gradient-hover.directive';
 
 @Component({
   selector: 'app-user-create',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BoldHoverDirective, GradientHoverDirective],
   templateUrl: './user-create.component.html',
   styleUrl: './user-create.component.scss',
 })
@@ -16,7 +18,6 @@ export class UserCreateComponent {
 
   @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
   
-
   userForm: FormGroup<FormControls<IUser>> = this.fb.nonNullable.group({
     id: [0],
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
@@ -43,7 +44,7 @@ export class UserCreateComponent {
   
   onSubmit(): void {
     if (this.userForm.valid) {
-        const newUser: IUser = {id: Date.now(), ...this.userForm.getRawValue} as IUser;
+        const newUser: IUser = { ...this.userForm.getRawValue(), id: Date.now() } as IUser;
         this.createUser.emit(newUser);
         this.userForm.reset();
       }

@@ -19,5 +19,4 @@ export class PluralFormPipe implements PipeTransform {
     } 
     return firstForm;
   }
-
 }

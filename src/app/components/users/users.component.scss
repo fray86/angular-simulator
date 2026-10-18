@@ -5,8 +5,7 @@ body {
 .users-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 70px;
-  padding: 40px;
+  gap: 65px;
   margin: 0 auto;
   max-width: 1920px;
 }
@@ -27,3 +26,4 @@ body {
   justify-content: center;
   display: flex;
 }
+
