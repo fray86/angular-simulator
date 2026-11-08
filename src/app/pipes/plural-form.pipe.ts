@@ -8,13 +8,21 @@ export class PluralFormPipe implements PipeTransform {
 
   transform(value: number | string, firstForm: string, secondForm: string, thirdForm: string): string {
     const correctValue: number = Number(value);
+    const lastTwoDigits: number = correctValue % 100;
+    const lastDigit: number = correctValue % 10;
+    const isException: boolean = lastTwoDigits >= 11 && lastTwoDigits <= 14;
+    const endsWithOne: boolean = lastDigit === 1;
+    const endsWithTwoToFour: boolean = lastDigit >= 2 && lastDigit <= 4;
     if (Number.isNaN(correctValue)) {
       return '';
-    } if ((correctValue % 100 >= 11) && (correctValue % 100 <= 14)) {
+    } 
+    if (isException) {
       return firstForm;
-    } if (correctValue % 10 === 1) {
+    } 
+    if (endsWithOne) {
       return secondForm;
-    } if ((correctValue % 10 >= 2) && (correctValue % 10 <= 4)) {
+    } 
+    if (endsWithTwoToFour) {
       return thirdForm;
     } 
     return firstForm;
