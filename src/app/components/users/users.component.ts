@@ -6,11 +6,12 @@ import { IUser } from '../../interfaces/IUser';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { UserCreateComponent } from '../user-create/user-create.component';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
-
+import { PluralFormPipe } from '../../pipes/plural-form.pipe';
+import { GradientHoverDirective } from '../../directives/gradient-hover.directive';
 
 @Component({
   selector: 'app-users',
-  imports: [AsyncPipe, UserCardComponent, UserCreateComponent, UsersFilterComponent],
+  imports: [AsyncPipe, UserCardComponent, UserCreateComponent, UsersFilterComponent, PluralFormPipe, GradientHoverDirective],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
@@ -22,6 +23,7 @@ export class UsersComponent implements OnInit {
   
   filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.searchValue$]).pipe(
     map(([users, textValue]: [IUser[], string]) => {
+      console.log('USERS:', users);
       return users.filter((user: IUser) => user.name.toLowerCase().includes(textValue))
     })
   )

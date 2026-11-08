@@ -1,6 +1,6 @@
 <div class="user-card">
   <div class="user-header">
-    <h1>{{ user.name }}</h1>
+    <h1>{{ user.name | uppercase }}</h1>
     <h3 class="username">{{ user.username }}</h3>
       </div>
       <div class="contacts">
@@ -12,11 +12,11 @@
           </li>
           <li>
             <span class="label">Телефон:</span>
-            <a class="user-phone fw-bold" href="tel:{{ user.phone }}">{{ user.phone }}</a>
+            <a class="user-phone fw-bold" href="tel:{{ user.phone | telTransform: TelFormat.COMPACT }}">{{ user.phone | telTransform: TelFormat.INTERNATIONAL }}</a>
           </li>
           <li>
             <span class="label">Веб-сайт:</span>
-            <a class="user-link fw-bold" href="https://{{ user.website  }}">{{ user.website || "Неизвестно" }}</a>
+            <a class="user-link fw-bold" href="https://{{ user.website }}">{{ user.website || "Неизвестно" }}</a>
           </li>
         </ul>
       </div>
@@ -65,6 +65,6 @@
           </li>
         </ul>
       </div>
-      <button [id]="'user-btn-' + user.id" class="user-btn" (click)="deleteUser()">Удалить</button>
+      <button BoldHover [id]="'user-btn-' + user.id" class="user-btn" (click)="deleteUser()">Удалить</button>
     </div>
 
