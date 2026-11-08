@@ -5,6 +5,7 @@ import { MessageService } from './message.service';
 import { LoaderService } from './loader.service';
 import { LocalStorageService } from './local-storage.service';
 import { IUser } from './app/interfaces/IUser';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -48,13 +49,15 @@ export class UserService {
     }
     this.loaderService.showLoader();
     return this.userApiService.getUsers()
-      .pipe(
-        catchError(() => {
+    .pipe(
+      catchError((error: HttpErrorResponse): Observable<IUser[]> => {
+        if (error.status < 500 || error.status >= 600) {
           this.messageService.showError('Ошибка загрузки пользователей');
-          return of([]);
-        }),
-        finalize(() => this.loaderService.hideLoader())
-      );
+        }
+        return of([]);
+      }),
+      finalize(() => this.loaderService.hideLoader())
+    );
   }
 
 }
